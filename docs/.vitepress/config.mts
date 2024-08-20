@@ -9,12 +9,6 @@ export default defineConfig({
     nav: [
       { text: '主页', link: '/' },
       {
-        text: '计算机基础',
-        items: [
-          { text: '数据结构与算法', link: '' },
-        ]
-      },
-      {
         text: 'C#',
         items: [
           { text: 'C#', link: '' },
@@ -58,6 +52,7 @@ export default defineConfig({
           { text: 'Docker', link: '' },
           { text: 'K8S', link: '' },
           { text: 'CI/DI', link: ''},
+          { text: 'Linux', link: '' },
         ]
       },
       {
@@ -70,6 +65,23 @@ export default defineConfig({
           { text: 'Bluetooth', link: ''},
           { text: 'Zigbee', link: ''},
           { text: '消息队列', link: ''},
+        ]
+      },
+      {
+        text: '计算机基础',
+        items: [
+          { text: '计算机网络', link: '' },
+          { text: '数据结构', link: '' },
+          { text: '算法', link: '' },
+        ]
+      },
+      {
+        text: '系统设计',
+        items: [
+          { text: '基础知识', link: '' },
+          { text: '认证授权', link: '' },
+          { text: '数据安全', link: '' },
+          { text: '设计模式', link: '' },
         ]
       },
       { text: 'Git', link: '' },
