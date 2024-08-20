@@ -18,13 +18,5 @@ features:
   - title: C#
     link: /markdown-examples
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: .Net Core
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: EF Core
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: 数据库
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: 数据库
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
 
