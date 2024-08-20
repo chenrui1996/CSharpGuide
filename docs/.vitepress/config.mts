@@ -101,5 +101,5 @@ export default defineConfig({
     //   // { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
     // ]
   },
-  base: '/StudyGuide/'
+  base: '/Study-Guide/'
 })
