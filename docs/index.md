@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "StudyGuide"
-  text: ""
+  text: "StudyGuide"
   tagline: 
   # actions:
   #   - theme: brand
