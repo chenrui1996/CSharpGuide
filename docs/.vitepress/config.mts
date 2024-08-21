@@ -2,20 +2,23 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "StudyGuide",
-  description: "Study Guide",
+  title: "CSharpGuide",
+  description: "CSharpGuide",
+  head: [['link', { rel: 'icon', type: "image/x-icon", href: 'logo.png'}]],
   themeConfig: {
+    logo:'/logo.png',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: '主页', link: '/' },
       {
         text: 'C#',
         items: [
-          { text: 'C#', link: '' },
+          { text: 'C#语言', link: '/c-sharp/programming-language' },
           { text: '.Net Core', link: '' },
           { text: 'EF Core', link: '' },
           { text: 'WPF', link: ''},
           { text: 'Winform', link: ''},
+          { text: 'MAUI', link: ''},
         ]
       },
       {
@@ -32,7 +35,6 @@ export default defineConfig({
           { text: 'Android', link: '' },
           { text: 'iOS', link: '' },
           { text: 'uni-app', link: '' },
-          { text: 'MAUI', link: ''},
         ]
       },
       {
@@ -59,6 +61,7 @@ export default defineConfig({
         text: '通信',
         items: [
           { text: 'Socket', link: '' },
+          { text: '接口', link: '' },
           { text: 'Modbus', link: '' },
           { text: 'S7', link: '' },
           { text: 'Serial', link: ''},
@@ -101,12 +104,26 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'C#语言',
+        collapsed: true,
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'C#', link: '/c-sharp/programming-language' },
+          { text: '.Net Core', link: '' },
+          { text: 'EF Core', link: '' },
+          { text: 'WPF', link: ''},
+          { text: 'Winform', link: ''},
+          { text: 'MAUI', link: ''},
         ]
-      }
+      },
+      {
+        text: '前端',
+        collapsed: true,
+        items: [
+          { text: 'HTML/CSS', link: '' },
+          { text: 'JavaScript', link: '' },
+          { text: 'Vue', link: '' },
+        ]
+      },
     ],
 
     // socialLinks: [

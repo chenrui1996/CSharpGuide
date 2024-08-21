@@ -2,17 +2,17 @@
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
-hero:
-  name: "StudyGuide"
-  text: "啥也不是"
-  tagline: 
-  # actions:
-  #   - theme: brand
-  #     text: Markdown Examples
-  #     link: /markdown-examples
-  #   - theme: alt
-  #     text: API Examples
-  #     link: /api-examples
+# hero:
+#   name: "CSharpGuide"
+#   text: ""
+#   tagline: 
+#   actions:
+#     - theme: brand
+#       text: Markdown Examples
+#       link: /markdown-examples
+#     - theme: alt
+#       text: API Examples
+#       link: /api-examples
 
 # features:
 #   - title: C#
