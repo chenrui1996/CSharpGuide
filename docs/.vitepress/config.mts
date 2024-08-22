@@ -104,10 +104,10 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'C#语言',
+        text: 'C#',
         collapsed: true,
         items: [
-          { text: 'C#', link: '/c-sharp/programming-language' },
+          { text: 'C#语言', link: '/c-sharp/programming-language' },
           { text: '.Net Core', link: '' },
           { text: 'EF Core', link: '' },
           { text: 'WPF', link: ''},
