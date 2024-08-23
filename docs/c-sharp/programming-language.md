@@ -175,7 +175,7 @@ Java: 使用 javac 编译器，将代码编译成字节码（bytecode），然�
 #### ……
 
 ### 如何选择
-c#相对java多了很多功能及特性，而Java相对于在web领域c#具有更强大的生态。
+<!-- c#相对java多了很多功能及特性，而Java相对于在web领域c#具有更强大的生态。
 
 在我看来，如果您想实现一个稳定的大规模企业系统、大数据处理或分布式系统时，最好选择Java。
 
@@ -198,8 +198,52 @@ c#相对java多了很多功能及特性，而Java相对于在web领域c#具有�
 不可否认Java主导的互联网、电商、虚拟货币等给生活带来了巨大的便利。但工业生产始终是一个国家的底气。
 
 希望同志们多关注企业信息化系统、自动化系统、工业软件。这些我们还有很大的差距！！！
+::: -->
+::: tip 如果不用工作
+选个P啊，我选择躺平。
 :::
 
+::: tip 面试Java岗位
+Java生态完，分布式、大数据、服务监控……啥都有包，而且稳定。
+
+C#毛都没有，实现个AOP都非半天劲，啥都得自己写。那么多特性用不到，都是糟粕。
+
+我当然选Java。C#狗都不用。
+:::
+
+::: tip 面试C#岗位
+.Net Core 优化了请求效率请求效率比Java效率高
+
+Linq 优化了集合操作效率，计算效率比Java高（虽然Java有Stream编程，但相对Java，Linq还支持EF）
+
+而且C#可以开发web，桌面应用，移动端。甚者可以写写C和C嘎嘎，一个人可以当成多个人用，节约学习成本。
+
+至于生态，小型系统够用了。
+
+我当然选C#。Java只会用轮子。
+:::
+
+::: tip 技术选项
+稳定的大规模企业系统、大数据处理或分布式系统，选Java。（也可以选c#但相对Java三方库选择很少）
+
+如果是企业内部系统，在Windows上运行的测试工具、调试工具，选C#，可以很好的兼容Windows平台。 （选Java也行，你要用Swing开发桌面程序也不是不可以）
+
+如果现有技术栈是C\C++\C#，选C#可以节约成本。
+
+如果现有技术栈是Java，选Java可以节约成本。
+
+如果现在没有技术栈，需要从头搭建，选Java。因为有一大批毕业生和培训机构在卷Java。
+:::
+
+::: danger 
+语言没有优劣之分，大多数情况下Java和C#都能满足开发需求，只是实现方式不同而已。
+
+不要觉得用Java就有优越感，你所谓的优越感可能带不来丝毫好处。
+
+不要觉得用C#就低人一等，挣钱不寒酸。
+
+加油同志们！！！
+:::
 
 ## 标准规范
 C# 语言规范是 C# 语言的权威来源。 该规范由 ECMA C# 标准委员会 (TC49-TG2) 制定。 委员会目前正在制定该标准的第 8 版。 此处发布的草稿包括部分但并非所有 C# 8 功能。 委员会使用 Microsoft 规范和语言设计会议 (LDM) 笔记来制定该规范。
@@ -217,63 +261,6 @@ C# 语言规范是 C# 语言的权威来源。 该规范由 ECMA C# 标准委员
 值类型分为两类：struct和enum。
 :::
 
-::: tip struct和class的区别是什么？
-struct是值类型，在栈（stack）中直接存储数据。
-
-class是引用类型，在堆（heap）上存储数据，变量存储的是对象的引用（指针）。当一个对象被赋值给另一个变量时，两个变量都指向同一个对象。
-
-::: danger record
-从 C# 10 开始，可定义记录结构类型。 记录类型提供用于封装数据的内置功能。
-record的引入使得在C#中定义数据传输对象（DTO）和不可变类型变得更加简单和直观。
-
-可简单理解为：
-
-record struct：不可变值类型
-```C#
-public readonly record struct Point(int X, int Y);
-var point1 = new Point(3, 4);
-var point2 = new Point(3, 4);
-Console.WriteLine(point1);  // 输出: Point { X = 3, Y = 4 }
-// 值比较
-Console.WriteLine(point1 == point2);  // 输出: True
-point1.X = 5;  // 编译错误：无法为只读属性赋值
-```
-
-record class：不可变引用类型，但可以比较值而非引用
-```C#
-public record Point(int X, int Y);
-var point1 = new Point(3, 4);
-var point2 = new Point(3, 4);
-Console.WriteLine(point1);  // 输出: Point { X = 3, Y = 4 }
-// 值比较
-Console.WriteLine(point1 == point2);  // 输出: True
-point1.X = 5;  // 编译错误：无法为只读属性赋值
-```
-
-详情参考[record](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/record)。
-:::
-
-::: tip ref struct
-ref struct用于定义只能在栈上分配的结构体类型，适合需要高效内存管理的场景。
-
-典型应用：Span< T>
-
-Span< T>是一个非常常见的ref struct，用于表示内存中连续的一块区域。Span<\T>允许高效地操作数组、字符串和其他内存块，而无需进行大量的内存复制或分配。
-```C#
-public void ProcessSpan(Span<int> span)
-{
-    for (int i = 0; i < span.Length; i++)
-    {
-        span[i] *= 2;
-    }
-}
-int[] array = { 1, 2, 3, 4 };
-ProcessSpan(array);  // Span<T>可以直接操作数组
-Console.WriteLine(string.Join(", ", array));  // 输出: 2, 4, 6, 8
-```
-:::
-
-
 ::: tip 值类型的特点？
 1.直接存储数据：值类型变量直接在栈（stack）内存中分配空间，存储实际的值。
 
@@ -285,9 +272,10 @@ Console.WriteLine(string.Join(", ", array));  // 输出: 2, 4, 6, 8
 :::
 
 ::: tip 值类型可以被继承吗？
-值类型不能被继承。
+值类型不能被继承，因为所有值类型最终会编译成终结类(sealed)，但结构体可以实现接口（枚举不可以实现接口）。
 :::
 
+#### 内置值类型
 ::: tip 内置值类型有哪些？
 | 关键字   | .NET 类型         | 空间   | 数值范围                                      | 默认值  |
 | -------- | ----------------- | ---------- | --------------------------------------------- | ------- |
@@ -380,6 +368,64 @@ bool success = int.TryParse(str, out int result); // 使用TryParse方法
 ```
 :::
 
+#### struct
+::: tip struct和class的区别是什么？
+struct是值类型，在栈（stack）中直接存储数据。
+
+class是引用类型，在堆（heap）上存储数据，变量存储的是对象的引用（指针）。当一个对象被赋值给另一个变量时，两个变量都指向同一个对象。
+
+::: danger record
+从 C# 10 开始，可定义记录结构类型。 记录类型提供用于封装数据的内置功能。
+record的引入使得在C#中定义数据传输对象（DTO）和不可变类型变得更加简单和直观。
+
+可简单理解为：
+
+record struct：不可变值类型
+```C#
+public readonly record struct Point(int X, int Y);
+var point1 = new Point(3, 4);
+var point2 = new Point(3, 4);
+Console.WriteLine(point1);  // 输出: Point { X = 3, Y = 4 }
+// 值比较
+Console.WriteLine(point1 == point2);  // 输出: True
+point1.X = 5;  // 编译错误：无法为只读属性赋值
+```
+
+record class：不可变引用类型，但可以比较值而非引用
+```C#
+public record Point(int X, int Y);
+var point1 = new Point(3, 4);
+var point2 = new Point(3, 4);
+Console.WriteLine(point1);  // 输出: Point { X = 3, Y = 4 }
+// 值比较
+Console.WriteLine(point1 == point2);  // 输出: True
+point1.X = 5;  // 编译错误：无法为只读属性赋值
+```
+
+详情参考[record](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/record)。
+:::
+
+::: tip ref struct
+ref struct用于定义只能在栈上分配的结构体类型，适合需要高效内存管理的场景。
+
+典型应用：Span\<T>
+
+Span\<T>是一个非常常见的ref struct，用于表示内存中连续的一块区域。Span\<T>允许高效地操作数组、字符串和其他内存块，而无需进行大量的内存复制或分配。
+```C#
+public void ProcessSpan(Span<int> span)
+{
+    for (int i = 0; i < span.Length; i++)
+    {
+        span[i] *= 2;
+    }
+}
+int[] array = { 1, 2, 3, 4 };
+ProcessSpan(array);  // Span<T>可以直接操作数组
+Console.WriteLine(string.Join(", ", array));  // 输出: 2, 4, 6, 8
+```
+:::
+
+#### 枚举
 ::: tip 介绍一下枚举
 枚举类型 是由基础整型数值类型的一组命名常量定义的值类型。 
 
@@ -395,7 +441,7 @@ enum ErrorCode : ushort
 ```
 
 ::: danger 注意
-Java中枚举可以定义方法，但C#中不可以（但c#可以通过扩展方法实现类似的功能）。
+Java中枚举可以定义方法、实现接口，但C#中不可以（但c#可以通过扩展方法实现类似的功能）。
 :::
 
 ::: tip 枚举使用[Flags]属性
@@ -462,6 +508,10 @@ class Program
 
 防止反射攻击：枚举类型在反射攻击时会自动防止创建新的实例。
 :::
+
+#### 元祖
+
+
 
 ### 内置引用类型
 | 关键字    | .NET 类型         |
