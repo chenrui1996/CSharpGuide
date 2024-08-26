@@ -223,7 +223,7 @@ Linq 优化了集合操作效率，计算效率比Java高（虽然Java有Stream�
 我当然选C#。Java只会用轮子。
 :::
 
-::: tip 技术选项
+::: tip 技术选型
 稳定的大规模企业系统、大数据处理或分布式系统，选Java。（也可以选c#但相对Java三方库选择很少）
 
 如果是企业内部系统，在Windows上运行的测试工具、调试工具，选C#，可以很好的兼容Windows平台。 （选Java也行，你要用Swing开发桌面程序也不是不可以）
@@ -235,7 +235,7 @@ Linq 优化了集合操作效率，计算效率比Java高（虽然Java有Stream�
 如果现在没有技术栈，需要从头搭建，选Java。因为有一大批毕业生和培训机构在卷Java。
 :::
 
-::: danger 
+::: danger 写在最后
 语言没有优劣之分，大多数情况下Java和C#都能满足开发需求，只是实现方式不同而已。
 
 不要觉得用Java就有优越感，你所谓的优越感可能带不来丝毫好处。
@@ -250,6 +250,25 @@ C# 语言规范是 C# 语言的权威来源。 该规范由 ECMA C# 标准委员
 
 详情参考 [c# 标准规范](https://learn.microsoft.com/zh-cn/dotnet/csharp/specification/overview)。
 
+## 语言版本
+|目标	        |版本	     |C# 语言版本的默认值|
+|---------------|-----------|----------------|
+|.NET           |9.x	    |C# 13           |
+|.NET	        |8.x	    |C# 12           |             
+|.NET	        |7.x	    |C# 11           |
+|.NET	        |6.x	    |C# 10           |
+|.NET	        |5.x	    |C# 9.0          |
+|.NET Core	    |3.x	    |C# 8.0          |
+|.NET Core	    |2.x	    |C# 7.3          |
+|.NET Standard	|2.1	    |C# 8.0          |
+|.NET Standard	|2.0	    |C# 7.3          |
+|.NET Standard	|1.x	    |C# 7.3          |
+|.NET Framework	|All	    |C# 7.3          |
+
+参考[C# 语言版本控制](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/language-versioning)。
+
+## 结构
+
 ## 类型系统
 
 ### 值类型
@@ -259,6 +278,8 @@ C# 语言规范是 C# 语言的权威来源。 该规范由 ECMA C# 标准委员
 值类型派生自System.ValueType（派生自 System.Object）
 
 值类型分为两类：struct和enum。
+
+对于值类型，每个变量都具有其自己的数据副本，对一个变量执行的操作不会影响另一个变量（in、ref 和 out 参数变量除外。
 :::
 
 ::: tip 值类型的特点？
@@ -369,40 +390,20 @@ bool success = int.TryParse(str, out int result); // 使用TryParse方法
 :::
 
 #### struct
+::: tip 什么时候需要用struct？
+在C#中，struct通常用于表示轻量级的值类型，当你需要定义一个简单的数据结构来存储一组相关的数据时，考虑使用struct。
+
+在 .NET 中，所有基元数据类型（Boolean、Byte、Char、DateTime、Decimal、Double、Int16、Int32、Int64、SByte、Single、UInt16、UInt32 和 UInt64）都定义为结构。
+
+它性能好，赋值时会进行值拷贝，避免装箱和拆箱。
+
+但是当结构体较大、需要继承和多态时不建议使用struct。
+:::
+
 ::: tip struct和class的区别是什么？
 struct是值类型，在栈（stack）中直接存储数据。
 
 class是引用类型，在堆（heap）上存储数据，变量存储的是对象的引用（指针）。当一个对象被赋值给另一个变量时，两个变量都指向同一个对象。
-
-::: danger record
-从 C# 10 开始，可定义记录结构类型。 记录类型提供用于封装数据的内置功能。
-record的引入使得在C#中定义数据传输对象（DTO）和不可变类型变得更加简单和直观。
-
-可简单理解为：
-
-record struct：不可变值类型
-```C#
-public readonly record struct Point(int X, int Y);
-var point1 = new Point(3, 4);
-var point2 = new Point(3, 4);
-Console.WriteLine(point1);  // 输出: Point { X = 3, Y = 4 }
-// 值比较
-Console.WriteLine(point1 == point2);  // 输出: True
-point1.X = 5;  // 编译错误：无法为只读属性赋值
-```
-
-record class：不可变引用类型，但可以比较值而非引用
-```C#
-public record Point(int X, int Y);
-var point1 = new Point(3, 4);
-var point2 = new Point(3, 4);
-Console.WriteLine(point1);  // 输出: Point { X = 3, Y = 4 }
-// 值比较
-Console.WriteLine(point1 == point2);  // 输出: True
-point1.X = 5;  // 编译错误：无法为只读属性赋值
-```
-
-详情参考[record](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/record)。
 :::
 
 ::: tip ref struct
@@ -429,7 +430,19 @@ Console.WriteLine(string.Join(", ", array));  // 输出: 2, 4, 6, 8
 ::: tip 介绍一下枚举
 枚举类型 是由基础整型数值类型的一组命名常量定义的值类型。 
 
+枚举类型具有一个名称、一个必须为某个内置带符号或不带符号的整数类型的基础类型（如 Byte、Int32 或 UInt64）以及一组字段。 
+
 默认情况下，枚举成员的关联常数值为类型 int；它们从零开始，并按定义文本顺序递增 1。 可以显式指定任何其他整数数值类型作为枚举类型的基础类型。 还可以显式指定关联的常数值。
+
+对于枚举还有以下附加限制：
+
+它们不能定义自己的方法。
+
+它们不能实现接口。
+
+它们不能定义属性或事件。
+
+枚举不能是泛型，除非它嵌套在泛型类型中，才能是泛型。 也就是说，枚举不能有自己的类型参数。
 ```C#
 enum ErrorCode : ushort
 {
@@ -510,17 +523,608 @@ class Program
 :::
 
 #### 元祖
+::: tip 什么时候需要用元祖？
+使用元组的场景主要集中在临时需要组合多个数据项，但不需要创建完整的类或结构体的情况。
+
+返回多个值
+```C#
+public (int Sum, int Product) Calculate(int a, int b)
+{
+    int sum = a + b;
+    int product = a * b;
+    return (sum, product);
+}
+// 调用方法
+var result = Calculate(3, 4);
+Console.WriteLine($"Sum: {result.Sum}, Product: {result.Product}");
+```
+
+使用多个值的组合（元组字段名称）
+```C#
+var point = (X: 10, Y: 20);
+Console.WriteLine($"Point X: {point.X}, Y: {point.Y}");
+```
+
+简化LINQ查询
+```C#
+var people = new[]
+{
+    new { Name = "Alice", Age = 30 },
+    new { Name = "Bob", Age = 25 }
+};
+var results = people.Select(p => (p.Name, IsAdult: p.Age >= 18)).ToList();
+foreach (var result in results)
+{
+    Console.WriteLine($"{result.Name} is an adult: {result.IsAdult}");
+}
+```
+
+简化方法签名
+```C#
+public void DisplayPerson((string FirstName, string LastName, int Age) person)
+{
+    Console.WriteLine($"{person.FirstName} {person.LastName}, Age: {person.Age}");
+}
+DisplayPerson(("John", "Doe", 28));
+```
+:::
+
+::: tip 元组相等
+元组类型支持 == 和 != 运算符。 这些运算符按照元组元素的顺序将左侧操作数的成员与相应的右侧操作数的成员进行比较。
+```C#
+(int a, byte b) left = (5, 10);
+(long a, int b) right = (5, 10);
+Console.WriteLine(left == right);  // output: True
+Console.WriteLine(left != right);  // output: False
+
+var t1 = (A: 5, B: 10);
+var t2 = (B: 5, A: 10);
+Console.WriteLine(t1 == t2);  // output: True
+Console.WriteLine(t1 != t2);  // output: False
+```
+:::
+
+::: tip 元组作为 out 参数
+在某些情况下，out 参数可以是元组类型
+```C#
+var limitsLookup = new Dictionary<int, (int Min, int Max)>()
+{
+    [2] = (4, 10),
+    [4] = (10, 20),
+    [6] = (0, 23)
+};
+if (limitsLookup.TryGetValue(4, out (int Min, int Max) limits))
+{
+    Console.WriteLine($"Found limits: min is {limits.Min}, max is {limits.Max}");
+}
+// Output:
+// Found limits: min is 10, max is 20
+```
+:::
+
+### 引用类型
+::: tip 什么是引用类型？
+在C#中，引用类型（Reference types）是一种在在堆（heap）上存储数据的类型，变量存储的是对象的引用（指针）。
+
+因此，对一个变量执行的操作会影响另一个变量所引用的对象。
+
+下列关键字用于声明引用类型：
+    class，
+    interface，
+    delegate，
+    record，
+
+C# 也提供了下列内置引用类型：
+    dynamic，
+    object，
+    string
+:::
+
+#### 内置引用类型
+::: tip object
+object 类型是 System.Object 在 .NET 中的别名。 
+
+在 C# 的统一类型系统中，所有类型都是直接或间接从 System.Object 继承的。 
+
+可以将任何类型的值赋给 object 类型的变量。[装箱和取消装箱](#内置值类型)
+:::
+
+::: tip string
+string 类型表示零个或多个 Unicode 字符的序列。 string 是 System.String 在 .NET 中的别名。
+
+尽管 string 为引用类型，但是定义相等运算符 == 和 != 是为了比较 string 对象（而不是引用）的值。
+
+字符串是不可变的，即：字符串对象在创建后，其内容不可更改。
+
+例如，编写此代码时，编译器实际上会创建一个新的字符串对象来保存新的字符序列，且该新对象将赋给 b。 已为 b 分配的内存（当它包含字符串“h”时）可用于垃圾回收。
+```C#
+string b = "h";
+b += "ello";
+```
+:::
+
+::: tip string 常用方法
+1.字符串连接
+```C#
+var firstName = "Seven";
+var lastName = "Chen";
+//string.Concat
+string fullName1 = string.Concat(firstName, " ", lastName)
+string[] names = { firstName, lastName };
+//string.Join
+string fullName2 = string.Join(" ", names);
+//插值语法
+string fullName3 = $"{firstName} {lastName}";
+//格式化
+string fullName4 = string.Format("{0} {1}", firstName, lastName);
+```
+
+2.字符串拆分
+```C#
+string fullName = "Seven Chen";
+string[] words = sentence.Split(' '); // 拆分字符串
+```
+
+3.字符串替换
+```C#
+string fullName = "Seven Chen";
+string modified = fullName.Replace("Seven", "Eleven");
+```
+
+4.字符串比较
+```C#
+string fullName1 = "Seven Chen";
+string fullName2 = "seven chen";
+bool areEqual = string.Equals(fullName1, fullName2, StringComparison.OrdinalIgnoreCase);
+```
+StringComparison 枚举参考[StringComparison](https://learn.microsoft.com/zh-cn/dotnet/api/system.stringcomparison?view=net-8.0
+)
+
+5.字符串裁剪和修剪
+```C#
+string padded = "   text   ";
+// 去掉字符串前后的空白字符
+string trimmed = padded.Trim(); 
+// 获取子字符串（从第0位开始4个）
+string substring = trimmed.Substring(0, 4); 
+```
+
+6.查找
+```C#
+string text = "Hello, World!";
+// 检查字符串是否包含"World"
+bool contains = text.Contains("World"); 
+// 查找"World"在字符串中的位置，没有返回-1
+int index = text.IndexOf("World"); 
+//是否以“Hello”开始
+bool startFlag = text.StartsWith("Hello"); 
+//是否以“World”结束
+bool endFlag = text.EndsWith("World"); 
+```
+
+7.字符串的转换
+```C#
+string text = "Hello, World!";
+// 转小写
+string lower = text.ToLower();
+// 转大写
+string upper = text.ToUpper();
+```
+
+8.多行文本
+
+从C# 11开始，可以使用三重引号（"""）来表示多行字符串
+```C#
+var str =
+ """
+ This is a multi-line
+     string literal with the second line indented.
+ """;
+Console.WriteLine(str);
+```
+:::
+
+::: tip StringBuilder
+StringBuilder 是可变的，可以在不创建新对象的情况下修改其内容。
+
+它内部维护一个字符数组，允许在该数组上进行就地修改，减少了内存分配和复制的开销。
+
+StringBuilder 不是线程安全的。如果在多线程环境下使用，可能需要额外的同步机制来保证线程安全。
+
+适合于需要进行大量字符串拼接、修改、或字符串内容的动态构建的场景。例如，生成复杂的文本报告或动态构建查询字符串。
+
+```C#
+StringBuilder sb = new StringBuilder("Hello");
+sb.Append(" World"); // 直接修改内部字符数组
+```
+
+::: danger 注意
+c# 中没有StringBuffer，线程安全需要使用string
+:::
+
+::: tip dynamic（动态类型）
+dynamic 类型表示变量的使用和对其成员的引用绕过编译时类型检查。 改为在运行时解析这些操作。 
+
+dynamic 类型只在编译时存在，在运行时则不存在。
+
+```C#
+dynamic dyn = 1;
+object obj = 1;
+
+System.Console.WriteLine(dyn.GetType());//System.Int32
+System.Console.WriteLine(obj.GetType());//System.Int32
+
+dyn = dyn + 3; //正常
+obj = obj + 3; //编译错误
+```
+:::
+
+#### class
+参考[类](#类)。
+
+#### interface
+参考[类](#接口)。
+
+#### delegate
+参考[委托与事件](#委托与事件)。
+
+#### record
+::: danger record
+从 C# 10 开始，可定义记录结构类型。 记录类型提供用于封装数据的内置功能。
+record的引入使得在C#中定义数据传输对象（DTO）和不可变类型变得更加简单和直观。
+
+可简单理解为：
+
+record struct：不可变值类型
+```C#
+public readonly record struct Point(int X, int Y);
+var point1 = new Point(3, 4);
+var point2 = new Point(3, 4);
+Console.WriteLine(point1);  // 输出: Point { X = 3, Y = 4 }
+// 值比较
+Console.WriteLine(point1 == point2);  // 输出: True
+point1.X = 5;  // 编译错误：无法为只读属性赋值
+```
+
+record class：不可变引用类型，但可以比较值而非引用
+```C#
+public record Point(int X, int Y);
+var point1 = new Point(3, 4);
+var point2 = new Point(3, 4);
+Console.WriteLine(point1);  // 输出: Point { X = 3, Y = 4 }
+// 值比较
+Console.WriteLine(point1 == point2);  // 输出: True
+point1.X = 5;  // 编译错误：无法为只读属性赋值
+```
+
+详情参考[record](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/builtin-types/record)。
+:::
+
+### 匿名类型
+::: tip 匿名类型
+值类型不能被继承。
+
+匿名类型提供了一种方便的方法，可用来将一组只读属性封装到单个对象中，而无需首先显式定义一个类型。 类型名由编译器生成，并且不能在源代码级使用。 每个属性的类型由编译器推断。
+
+可结合使用 new 运算符和对象初始值设定项创建匿名类型。常用语查询表达式的 select 子句中。
+
+匿名类型确实会重写 ToString 方法，将用大括号括起来的每个属性的名称和 ToString 输出连接起来。
+
+```C#
+var v = new { Title = "Hello", Age = 24 };
+Console.WriteLine(v.ToString()); // "{ Title = Hello, Age = 24 }"
+```
+:::
+
+## 泛型
+::: tip 泛型概念
+泛型（Generics）是一种强大的特性，允许你定义类、接口、委托和方法时使用类型参数，从而提高代码的重用性、类型安全性和性能（避免装箱和取消装箱）。
+
+泛型使得你可以创建具有类型安全的代码而无需在运行时进行类型检查或转换。
+:::
+
+::: tip 泛型类
+定义泛型类时，你可以在类名后使用尖括号 \<T> 来指定类型参数：
+```C#
+public class Box<T>
+{
+    private T _content;
+
+    public void SetContent(T content)
+    {
+        _content = content;
+    }
+
+    public T GetContent()
+    {
+        return _content;
+    }
+}
+
+//使用
+Box<int> intBox = new Box<int>();
+intBox.SetContent(123);
+int content = intBox.GetContent();
+
+Box<string> stringBox = new Box<string>();
+stringBox.SetContent("Hello");
+string content1 = stringBox.GetContent();
+```
+
+::: tip 泛型方法
+泛型方法在方法定义时使用类型参数，调用时可以指定具体的类型：
+```C#
+public class Utility
+{
+    public T[] CreateArray<T>(int length)
+    {
+        return new T[length];
+    }
+}
+
+//使用
+Utility utility = new Utility();
+int[] intArray = utility.CreateArray<int>(10);
+string[] stringArray = utility.CreateArray<string>(5);
+```
+:::
+
+::: tip 泛型接口
+泛型接口定义时使用类型参数，具体的实现类可以指定具体的类型：
+```C#
+public interface IComparer<T>
+{
+    int Compare(T x, T y);
+}
+
+//实现
+public class IntComparer : IComparer<int>
+{
+    public int Compare(int x, int y)
+    {
+        return x.CompareTo(y);
+    }
+}
+
+public class StringComparer : IComparer<string>
+{
+    public int Compare(string x, string y)
+    {
+        return x.CompareTo(y);
+    }
+}
+
+//使用
+IComparer<int> comparer = new IntComparer();
+comparer.Compare(1, 2)
+
+IComparer<string> comparer1 = new StringComparer();
+comparer1.Compare("1", "2");
+```
+:::
+
+::: tip 泛型约束
+泛型约束允许你限制泛型类型参数的类型范围，使得你可以在泛型类或方法中使用特定的类型功能。
+
+常见的约束有：
+where T : class: 限制泛型类型参数必须是引用类型。
+
+where T : struct: 限制泛型类型参数必须是值类型（非 Nullable）。
+
+where T : new(): 限制泛型类型参数必须有一个无参数构造函数。
+
+where T : BaseClass: 限制泛型类型参数必须是指定基类的子类。
+
+where T : Interface: 限制泛型类型参数必须实现指定接口。
+
+```C#
+public class Repository<T> where T : class, new()
+{
+    public T CreateInstance()
+    {
+        return new T();
+    }
+}
+```
+:::
+
+::: tip 泛型集合
+C# 提供了一组泛型集合类，定义在 System.Collections.Generic 命名空间中，如 List\<T>, Dictionary\<TKey, TValue>, Queue\<T>, Stack\<T> 等。
+
+常见的约束有：
+where T : class: 限制泛型类型参数必须是引用类型。
+
+where T : struct: 限制泛型类型参数必须是值类型（非 Nullable）。
+
+where T : new(): 限制泛型类型参数必须有一个无参数构造函数。
+
+where T : BaseClass: 限制泛型类型参数必须是指定基类的子类。
+
+where T : Interface: 限制泛型类型参数必须实现指定接口。
+
+```C#
+List<int> numbers = new List<int>();
+numbers.Add(1);
+numbers.Add(2);
+numbers.Add(3);
+
+foreach (int number in numbers)
+{
+    Console.WriteLine(number);
+}
+```
+
+详情参考[集合](#集合)
+:::
+
+::: tip 泛型委托
+泛型委托允许你定义接受泛型参数的方法签名：
+```C#
+public delegate T Transformer<T>(T input);
+
+//使用
+Transformer<int> square = x => x * x;
+int result = square(5);
+Console.WriteLine(result); // 输出 25
+```
+
+详情参考[委托与事件](#委托与事件)
+:::
+
+::: tip 泛型的继承
+泛型类/接口可以继承自其他泛型类，也可以作为基类被其他泛型类/接口继承。
+
+在继承泛型类时，子类也需要指定类型参数，或者可以提供自己的类型参数。
+
+类在实现泛型接口时需要指定具体的类型参数。
+
+泛型类继承
+```C#
+// 基类定义
+public class BaseClass<T>
+{
+    public T Value { get; set; }
+}
+
+// 继承泛型类
+public class DerivedClass<T> : BaseClass<T>
+{
+    public void PrintValue()
+    {
+        Console.WriteLine(Value);
+    }
+}
+
+public class DerivedClass1 : BaseClass<int>
+{
+    public void PrintValue()
+    {
+        Console.WriteLine(Value);
+    }
+}
+```
+
+泛型接口继承
+```C#
+// 基接口定义
+public interface IProcessor<T>
+{
+    void Process(T item);
+}
+
+// 继承泛型接口
+public interface IAdvancedProcessor<T> : IProcessor<T>
+{
+    void AdvancedProcess(T item);
+}
+
+// 实现泛型接口（需要指定具体的类型参数，泛型类实现除外）
+public class Processor : IAdvancedProcessor<int>
+{
+    public void Process(int item)
+    {
+        Console.WriteLine("Processing: " + item);
+    }
+
+    public void AdvancedProcess(int item)
+    {
+        Console.WriteLine("Advanced Processing: " + item);
+    }
+}
+```
+
+泛型约束与继承
+
+泛型约束允许你限制泛型类型参数的范围。这些约束可以与继承一起使用，以确保类型参数满足某些条件。
+
+```C#
+// 定义一个基类
+public class Animal
+{
+    public void Eat() { }
+}
+
+// 定义一个接口
+public interface IReadable
+{
+    void Read();
+}
+
+// 泛型类的定义
+public class Repository<T> where T : Animal, IReadable, new()
+{
+    public T CreateInstance()
+    {
+        return new T(); // T 必须是 Animal 的子类，实现 IReadable 接口，并具有无参数构造函数
+    }
+}
+
+// 定义一个实现了约束的类
+public class Book : Animal, IReadable
+{
+    public void Read()
+    {
+        Console.WriteLine("Reading");
+    }
+}
+```
+
+泛型类和接口可以组合使用，实现更复杂的设计
+```C#
+// 泛型接口
+public interface IRepository<T>
+{
+    void Add(T item);
+    T Get(int id);
+}
+
+// 泛型类实现泛型接口
+public class Repository<T> : IRepository<T>
+{
+    public void Add(T item)
+    {
+        // 实现添加逻辑
+    }
+
+    public T Get(int id)
+    {
+        // 实现获取逻辑
+        return default;
+    }
+}
+
+// 使用泛型类
+IRepository<string> repo = new Repository<string>();
+repo.Add("Item1");
+string item = repo.Get(1);
+```
+:::
+
+## 集合
 
 
+## 委托与事件
 
-### 内置引用类型
-| 关键字    | .NET 类型         |
-| --------- | ----------------- |
-| `string`  | `System.String`   |
-| `object`  | `System.Object`   |
-| `dynamic` | `System.Dynamic.DynamicObject` |
+## 语句
 
+## 表达式
 
+## 方法
 
+## 类
 
-### 自定义类型
+## 接口
+
+## LINQ
+
+## 异常
+
+## 面向对象
+
+## 异步编程
+
+## 内存管理
+
+## 反射
+
+## 性能优化
