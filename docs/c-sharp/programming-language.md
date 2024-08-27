@@ -270,7 +270,9 @@ C# 语言规范是 C# 语言的权威来源。 该规范由 ECMA C# 标准委员
 ## 结构
 
 ## 类型系统
+C#主要将数据类型分为两种：值类型和引用类型。值类型包括简单类型（例如int，float，bool和char），枚举类型，结构类型和Nullable值类型。引用类型包括类类型，接口类型，委托类型和数组类型。
 
+![An image](programming-language/3.数据类型.png)
 ### 值类型
 ::: tip 什么是值类型？
 在C#中，值类型（Value Type）是一种在栈（stack）中直接存储数据的类型，而不是存储对数据的引用。
@@ -280,6 +282,8 @@ C# 语言规范是 C# 语言的权威来源。 该规范由 ECMA C# 标准委员
 值类型分为两类：struct和enum。
 
 对于值类型，每个变量都具有其自己的数据副本，对一个变量执行的操作不会影响另一个变量（in、ref 和 out 参数变量除外。
+
+![An image](programming-language/4.值类型.png)
 :::
 
 ::: tip 值类型的特点？
@@ -318,6 +322,8 @@ C# 语言规范是 C# 语言的权威来源。 该规范由 ECMA C# 标准委员
 Java 中的byte 对应c#中的sbyte。
 
 Java 中没有ushort。
+
+存在浮点运算时尽量使用decimal避免精度丢失。
 :::
 
 ::: tip 什么是装箱和取消装箱？
@@ -386,6 +392,35 @@ string str = "123";
 int i = int.Parse(str); // 将字符串转换为int
 
 bool success = int.TryParse(str, out int result); // 使用TryParse方法
+```
+:::
+
+::: tip 后缀及科学计数法
+使用带有文字的 f 或 F 后缀使其成为浮点型。
+```C#
+float f1 = 123456.5F;
+```
+
+使用带文字的 d 或 D 后缀使其成为双精度型。
+```C#
+double d1 = 12345678912345.5d;
+```
+
+使用带有文字的 m 或 M 后缀使其成为 decimal 类型。
+```C#
+decimal d1 = 123456789123456789123456789.5m;
+```
+
+使用 e 或E 表示10的幂，作为科学记数法的指数部分，使用浮点数、双精度数或小数。
+```C#
+double d = 0.12e2;
+Console.WriteLine(d);  // 12;
+
+float f = 123.45e-2f;
+Console.WriteLine(f);  // 1.2345
+
+decimal m = 1.2e6m;
+Console.WriteLine(m);// 1200000
 ```
 :::
 
@@ -606,6 +641,8 @@ if (limitsLookup.TryGetValue(4, out (int Min, int Max) limits))
 ::: tip 什么是引用类型？
 在C#中，引用类型（Reference types）是一种在在堆（heap）上存储数据的类型，变量存储的是对象的引用（指针）。
 
+![An image](programming-language/5.引用类型.png)
+
 因此，对一个变量执行的操作会影响另一个变量所引用的对象。
 
 下列关键字用于声明引用类型：
@@ -742,6 +779,30 @@ sb.Append(" World"); // 直接修改内部字符数组
 c# 中没有StringBuffer，线程安全需要使用string
 :::
 
+::: tip 特殊字符
+特殊字符之前将转义字符\（反斜杠）包括在字符串中。
+
+```C#
+//转义符 \
+string text = "This is a \"string\" in C#.";
+string str = "xyzdef\\rabc";
+string path = "\\\\mypc\\ shared\\project";
+
+//转义序列
+string str = @"xyzdef\rabc";
+string path = @"\\mypc\shared\project";
+string email = @"[email protected]";
+
+//多行字符串
+string str = @"this is a \
+multi line \
+string";
+```
+
+::: danger 注意
+c# 中没有StringBuffer，线程安全需要使用string
+:::
+
 ::: tip dynamic（动态类型）
 dynamic 类型表示变量的使用和对其成员的引用绕过编译时类型检查。 改为在运行时解析这些操作。 
 
@@ -763,7 +824,7 @@ obj = obj + 3; //编译错误
 参考[类](#类)。
 
 #### interface
-参考[类](#接口)。
+参考[接口](#接口)。
 
 #### delegate
 参考[委托与事件](#委托与事件)。
@@ -813,6 +874,88 @@ point1.X = 5;  // 编译错误：无法为只读属性赋值
 ```C#
 var v = new { Title = "Hello", Age = 24 };
 Console.WriteLine(v.ToString()); // "{ Title = Hello, Age = 24 }"
+```
+:::
+
+### 日期和时间
+::: tip 日期和时间常用操作
+```C#
+//创建DateTime对象
+DateTime dt = new DateTime(); // 分配默认值 01/01/0001 00:00:00
+
+//设置日期和时间
+//分配默认值01/01/0001 00:00:00
+DateTime dt1 = new DateTime(); 
+
+//分配年，月，日
+DateTime dt2 = new DateTime(2015, 12, 31); 
+
+//分配年，月，日, hour, min, seconds
+DateTime dt3 = new DateTime(2015, 12, 31, 5, 10, 20);
+ 
+//分配年，月，日, hour, min, seconds, UTC timezone
+DateTime dt4 = new DateTime(2015, 12, 31, 5, 10, 20, DateTimeKind.Utc);
+
+//Ticks
+DateTime dt = new DateTime(636370000000000000);
+
+//DateTime 静态字段
+DateTime currentDateTime = DateTime.Now;  //返回当前日期和时间
+DateTime todaysDate = DateTime.Today; // 返回今天的日期
+DateTime currentDateTimeUTC = DateTime.UtcNow;// 返回当前UTC日期和时间
+
+DateTime maxDateTimeValue = DateTime.MaxValue; // 返回DateTime的最大值
+DateTime minDateTimeValue = DateTime.MinValue; // 返回DateTime的最小值
+
+//时间跨度(TimeSpan)
+DateTime dt = new DateTime(2015, 12, 31);
+TimeSpan ts = new TimeSpan(25,20,55);
+DateTime newDate = dt.Add(ts);
+Console.WriteLine(newDate);//1/1/2016 1:20:55 AM
+
+DateTime dt1 = new DateTime(2015, 12, 31); 
+DateTime dt2 = new DateTime(2016, 2, 2);
+TimeSpan result = dt2.Subtract(dt1);//33.00:00:00
+
+//运算符
+DateTime dt1 = new DateTime(2015, 12, 20);
+DateTime dt2 = new DateTime(2016, 12, 31, 5, 10, 20); 
+TimeSpan time = new TimeSpan(10, 5, 25, 50);
+
+Console.WriteLine(dt2 + time); // 1/10/2017上午10:36:10
+Console.WriteLine(dt2 - dt1); //377.05:10:20
+Console.WriteLine(dt1 == dt2); //False
+Console.WriteLine(dt1 != dt2); //True
+Console.WriteLine(dt1 > dt2); //False
+Console.WriteLine(dt1 < dt2); //True
+Console.WriteLine(dt1 >= dt2); //False
+Console.WriteLine(dt1 <= dt2);//True
+
+//将 DateTime 转换为 String
+var dt = DateTime.Now;
+
+Console.WriteLine("Date String Current Culture: " + dt.ToString("d"));
+Console.WriteLine("MM/dd/yyyy Format: " + dt.ToString("MM/dd/yyyy"));
+Console.WriteLine("dddd, dd MMMM yyyy Format: " + dt.ToString("dddd, dd MMMM yyyy"));
+Console.WriteLine("MM/dd/yyyy h:mm tt Format: " + dt.ToString("MM/dd/yyyy h:mm tt"));
+Console.WriteLine("MMMM dd Format:" + dt.ToString("MMMM dd"));
+Console.WriteLine("HH:mm:ss Format: " + dt.ToString("HH:mm:ss"));
+Console.WriteLine("hh:mm tt Format: " + dt.ToString("hh:mm tt"));
+Console.WriteLine("Short Date String: " + dt.ToShortDateString());
+Console.WriteLine("Long Date String: " + dt.ToLongDateString());
+Console.WriteLine("Short Time String: " + dt.ToShortTimeString());
+Console.WriteLine("Long Time String: " + dt.ToLongTimeString());
+
+//将字符串转换为DateTime
+var str = "5/12/2020";
+DateTime dt;
+var isValidDate = DateTime.TryParse(str, out dt);
+
+if(isValidDate)
+    Console.WriteLine(dt);
+else
+    Console.WriteLine($"{str} is not a valid date string");
+
 ```
 :::
 
@@ -1101,27 +1244,585 @@ string item = repo.Get(1);
 :::
 
 ## 集合
+![An image](programming-language/6.集合关系图.png)
+
+推荐使用场景：
+| 集合类型                         | 是否顺序排列 | 是否连续存储 | 访问时间复杂度    | 操作时间复杂度           | 直接访问方式 | 使用场景                                                                                     |
+|----------------------------------|--------------|--------------|-------------------|--------------------------|--------------|-------------------------------------------------------------------------------------------------|
+| `Array`                          | 是           | 是           | O(1)              | 插入/删除: O(n)          | 索引         | 用于已知大小和类型固定的元素集合，性能高，适用于频繁访问和较少修改的场景。                                 |
+| `List<T>`                        | 是           | 是           | O(1)              | 插入/删除: O(n)          | 索引         | 动态大小的数组，适用于需要动态调整元素数量的场景，常用于大多数需要顺序访问和偶尔插入/删除的场景。               |
+| `SortedList<TKey, TValue>`       | 是           | 是           | O(log n)          | 插入/删除: O(n)          | 键或索引     | 需要按键排序且存储量较小时，适用于需要高效内存使用且偶尔进行查找和修改操作的场景。                               |
+| `LinkedList<T>`                  | 是           | 否           | O(n)              | 插入/删除: O(1)          | 不支持索引    | 适用于需要频繁插入/删除操作且不需要随机访问的场景，例如队列或需要保持元素顺序的场景。                        |
+| `ImmutableList<T>`               | 是           | 是           | O(1)              | 插入/删除: O(n)          | 索引         | 适用于需要保持集合不变且能安全共享的场景，常用于并发编程或函数式编程。                                     |
+| `Dictionary<TKey, TValue>`       | 否           | 否           | O(1)              | 插入/删除: O(1)          | 键           | 用于根据键快速查找值的场景，适用于键值对存储，如映射关系或查找表。                                    |
+| `SortedDictionary<TKey, TValue>` | 是           | 否           | O(log n)          | 插入/删除: O(log n)      | 键           | 需要按键排序的键值对集合，适用于需要按顺序存取键值对的场景。                                                 |
+| `ConcurrentDictionary<TKey, TValue>` | 否       | 否           | O(1)              | 插入/删除: O(1)          | 键           | 线程安全的键值对集合，适用于多线程环境下需要快速查找和修改键值对的场景。                                      |
+| `ImmutableDictionary<TKey, TValue>` | 否        | 否           | O(1)              | 插入/删除: O(log n)      | 键           | 适用于需要不可变且线程安全的键值对集合，常用于并发编程中的共享数据。                                        |
+| `HashSet<T>`                     | 否           | 否           | O(1)              | 插入/删除: O(1)          | 不支持索引    | 用于存储不重复元素的集合，适用于需要快速查找和去重操作的场景。                                            |
+| `SortedSet<T>`                   | 是           | 否           | O(log n)          | 插入/删除: O(log n)      | 不支持索引    | 适用于需要排序且无重复元素的集合，适合用于需要自然排序且查找、插入效率较高的场景。                          |
+| `ConcurrentBag<T>`               | 否           | 否           | O(n)              | 插入: O(1), 删除: O(n)   | 不支持索引    | 线程安全的无序集合，适用于需要在多线程环境中收集和分发元素的场景。                                          |
+| `Queue<T>`                       | 是           | 否           | O(n)              | Enqueue: O(1), Dequeue: O(1) | 不支持索引 | 先进先出（FIFO）集合，适用于排队、缓冲、任务调度等场景。                                         |
+| `Stack<T>`                       | 是           | 否           | O(n)              | Push: O(1), Pop: O(1)    | 不支持索引    | 后进先出（LIFO）集合，适用于需要后进先出的场景，如撤销操作、表达式求值等。                                   |
 
 
-## 委托与事件
 
-## 语句
+### Array（数组）
+::: tip 数组的特点
+数组的本质是一种引用类型的数据结构，它可以存储一组相同类型的元素，并在内存中以连续的方式分配空间。这些元素可以通过索引来访问，其中索引是基于零的。
+
+数组具有以下属性：
+
+1.数组可以是一维、多维或交错的。
+
+2.声明数组变量时设置维度数。 创建数组实例时，将建立每个维度的长度。 这些值在实例的生存期内无法更改。
+
+3.交错数组是数组数组，每个成员数组的默认值为null。
+
+4.数组从零开始编制索引：包含 n 元素的数组从 0 索引到 n-1。
+
+5.数组元素可以是任何类型，其中包括数组类型。
+
+6.数组类型是从抽象的基类型 Array 派生的引用类型。 所有数组都会实现IList和IEnumerable。 可以使用 foreach 语句循环访问数组。 单维数组还实现了 IList\<T> 和 IEnumerable\<T>。
+:::
+
+#### 一维数组
+::: tip 一维数组的创建
+1.指定长度的数组创建
+```C#
+// 创建一个长度为5的int数组，默认值为0
+int[] numbers = new int[5]; 
+```
+
+2.直接初始化数组
+```C#
+// 创建并初始化数组
+int[] numbers = new int[] { 1, 2, 3, 4, 5 }; 
+// 简化的初始化方法
+int[] numbers = { 1, 2, 3, 4, 5 };
+```
+
+3.使用Array.CreateInstance方法
+在运行时动态创建数组，特别是在不知道数组类型或维数的情况下
+```C#
+// 创建一个长度为5的int类型数组
+Array dynamicArray = Array.CreateInstance(typeof(int), 5); 
+// 设置第一个元素的值
+dynamicArray.SetValue(42, 0);
+// 获取第一个元素的值
+int value = (int)dynamicArray.GetValue(0); 
+```
+:::
+
+::: tip 一维数组的遍历
+```C#
+int[] numbers = { 1, 2, 3, 4, 5 };
+// 使用for循环遍历
+for (int i = 0; i < numbers.Length; i++)
+{
+    Console.WriteLine(numbers[i]);
+}
+
+// 使用foreach遍历
+foreach (int number in numbers)
+{
+    Console.WriteLine(number);
+}
+```
+[迭代器](#迭代器)
+:::
+
+::: tip 常用方法
+多数操作可采用[LINQ](#LINQ)，此处不再列出
+```C#
+//排序
+//正序
+Array.Sort(numbers);
+
+//反转数组
+Array.Reverse(numbers);
+
+//查找元素
+int index = Array.IndexOf(numbers, 3); // 查找值为3的元素的索引
+
+//清空数组
+Array.Clear();
+Array.Clear(numbers, 0, numbers.Length);
+```
+:::
+
+#### 多维数组
+::: tip 多维数组的创建
+1.指定长度的数组创建
+```C#
+// 创建一个3x3的二维数组
+int[,] matrix = new int[3, 3]; 
+// 创建一个3x3x3的二维数组
+int[,,] matrix = new int[3, 3, 3];
+```
+
+2.直接初始化数组
+```C#
+// 创建并初始化数组
+int[,] matrix = new int[,] 
+{ 
+    { 1, 2, 3 }, 
+    { 4, 5, 6 }, 
+    { 7, 8, 9 } 
+};
+
+int[,,] matrix = new int[,,]
+{
+    {
+        {1,2,3},
+        {1,2,3},
+        {1,2,3}
+    },
+    {
+        {1,2,3},
+        {1,2,3},
+        {1,2,3}
+    },
+    {
+        {1,2,3},
+        {1,2,3},
+        {1,2,3}
+    },
+};
+// 简化的初始化方法
+int[,] matrix =
+{ 
+    { 1, 2, 3 }, 
+    { 4, 5, 6 }, 
+    { 7, 8, 9 } 
+};
+
+int[,,] matrix =
+{
+    {
+        {1,2,3},
+        {1,2,3},
+        {1,2,3}
+    },
+    {
+        {1,2,3},
+        {1,2,3},
+        {1,2,3}
+    },
+    {
+        {1,2,3},
+        {1,2,3},
+        {1,2,3}
+    },
+};
+```
+
+3.使用Array.CreateInstance方法
+在运行时动态创建数组，特别是在不知道数组类型或维数的情况下
+```C#
+// 创建一个长度为5x5x5的int类型数组
+Array dynamicArray = Array.CreateInstance(typeof(int), 5, 5, 5); 
+// 设置第0, 0, 0个元素的值
+dynamicArray.SetValue(42, 0, 0, 0);
+// 获取第0, 0, 0个元素的值
+int value = (int)dynamicArray.GetValue(0, 0 ,0); 
+```
+
+::: danger 注意
+多维数组的长度(matrix.Length)为：X x Y x Z!!
+:::
+
+::: tip 多维数组的遍历
+```C#
+int[,,] matrix = new int[,,]
+{
+    {
+        {1,2,3},
+        {1,2,3},
+        {1,2,3}
+    },
+    {
+        {1,2,3},
+        {1,2,3},
+        {1,2,3}
+    },
+    {
+        {1,2,3},
+        {1,2,3},
+        {1,2,3}
+    },
+};
+// 使用for循环遍历
+for (int i = 0; i < matrix.GetLength(0); i++)
+{
+    for (int j = 0; j < matrix.GetLength(1); j++)
+   {
+       for (int k = 0; k < matrix.GetLength(2); k++)
+       {
+           Console.WriteLine(matrix[i,j,k]);
+       }
+    }
+}
+
+// 使用foreach遍历
+foreach (int number in matrix)
+{
+    Console.WriteLine(number);
+}
+```
+[迭代器](#迭代器)
+:::
+
+::: tip 常用方法
+```C#
+//排序、反转、查找元素等操作只有一维数组可使用
+//清空数组
+Array.Clear();
+Array.Clear(numbers, 0, numbers.Length);
+```
+:::
+
+#### 交错数组
+::: tip 交错数组的创建
+1.指定长度的数组创建
+```C#
+int[][] jaggedArray = new int[3][]; // 创建一个有3个子数组的锯齿数组
+
+// 初始化每个子数组
+jaggedArray[0] = new int[2]; // 第一个子数组有2个元素
+jaggedArray[1] = new int[3]; // 第二个子数组有3个元素
+jaggedArray[2] = new int[4]; // 第三个子数组有4个元素
+
+```
+
+2.直接初始化数组
+```C#
+// 创建并初始化数组
+// 不能简化初始方法
+int[][] jaggedArray = new int[][]
+{
+    new int[] { 1, 2 },
+    new int[] { 3, 4, 5 },
+    new int[] { 6, 7, 8, 9 }
+};
+```
+
+3.使用Array.CreateInstance方法
+在运行时动态创建数组，特别是在不知道数组类型或维数的情况下
+```C#
+// 创建一个长度为2x3x4的int类型数组
+Array dynamicArray = Array.CreateInstance(typeof(int), 2, 3, 4); 
+// 设置第0, 0, 0个元素的值
+dynamicArray.SetValue(42, 0, 0, 0);
+// 获取第0, 0, 0个元素的值
+int value = (int)dynamicArray.GetValue(0, 0 ,0); 
+```
+:::
+
+::: tip 交错数组的遍历与常用操作
+与多维数组一致。
+
+参考[多维数组](#多维数组)
+:::
+
+### List(列表)
+
+#### List(普通列表)
+::: tip List的特点
+List 表示可由索引访问的强类型对象列表。
+
+List\<T>是一个通用（泛型）集合类，属于System.Collections.Generic命名空间，
+List的大小是动态的，当添加或删除元素时，它会自动调整容量。
+
+::: danger 容量
+当使用默认构造函数创建一个空的List对象时，初始容量为0。但当第一次添加元素时，List的容量会扩大到足以容纳4个元素。随后，每次添加元素（Add，AddRange）时，如果当前容量不足，List的容量会翻倍增加，即每次增加的容量是原容量的两倍。
+:::
+
+::: tip List的常用操作
+```C#
+//创建和初始化
+// 创建一个空的List
+List<int> numbers = new List<int>();
+// 使用初始值创建List
+List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+// 指定容量创建List
+List<int> numbers = new List<int>(10); // 容量为10的空List
+
+//添加元素
+// 添加单个元素
+numbers.Add(6);
+// 添加多个元素
+numbers.AddRange(new int[] { 7, 8, 9 });
+// 插入元素到指定位置
+numbers.Insert(2, 10); // 在索引2处插入10
+
+// 访问元素
+// 通过索引访问元素
+int firstNumber = numbers[0]; // 获取第一个元素
+// 修改指定索引处的元素
+numbers[1] = 20; // 将第二个元素改为20
+
+// 移除元素
+// 移除指定元素（第一个匹配项）
+numbers.Remove(10);
+// 根据索引移除元素
+numbers.RemoveAt(2);
+// 移除指定范围内的元素
+numbers.RemoveRange(0, 2); // 移除前两个元素
+// 清空List
+numbers.Clear(); // 移除所有元素
+
+//查找元素
+// 查找元素的索引
+int index = numbers.IndexOf(20); // 查找第一个20的索引
+// 查找符合条件的第一个元素
+int number = numbers.Find(x => x > 5); // 查找第一个大于5的元素
+// 查找所有符合条件的元素
+List<int> result = numbers.FindAll(x => x > 5);
+
+//遍历List
+// 使用for循环遍历
+for (int i = 0; i < numbers.Count; i++)
+{
+    Console.WriteLine(numbers[i]);
+}
+// 使用foreach遍历
+foreach (int number in numbers)
+{
+    Console.WriteLine(number);
+}
+
+// 排序和反转
+// 升序排序
+numbers.Sort();
+// 降序排序
+numbers.Sort((a, b) => b.CompareTo(a));
+// 反转List顺序
+numbers.Reverse();
+
+// 转换为数组
+int[] array = numbers.ToArray();
+
+// 获取子列表
+List<int> sublist = numbers.GetRange(0, 3); // 获取从索引0开始的3个元素
+
+// 检查是否包含某个元素
+bool containsNumber = numbers.Contains(5); // 检查是否包含5
+
+//跳过指定个数元素
+numbers.Skip(0);
+//取前几个元素
+numbers.Take(1);
+```
+
+其他用法未依次列出
+
+多数操作可采用[LINQ](#LINQ)，此处也不再列出
+:::
+
+#### SortedList(排序列表)
+SortedList<TKey, TValue> 是 C# 中一个集合类，它既实现了 IDictionary<TKey, TValue> 接口，也实现了 ICollection<KeyValuePair<TKey, TValue>> 接口。它在键值对中按键排序并提供键和索引两种方式来访问元素。
+
+::: tip SortedList的常用操作
+基本类型作为Key
+```C#
+//创建
+var sortedList = new SortedList<int, string>();
+// 指定初始容量为10
+var sortedList = new SortedList<string, int>(10);  
+// 不区分大小写的比较器
+var sortedList = new SortedList<string, int>(StringComparer.OrdinalIgnoreCase); 
+
+//添加元素
+sortedList.Add(1, "One");
+sortedList.Add(3, "Three");
+sortedList[2] = "Two"; // 使用索引器添加元素
+
+// 访问元素
+string value = sortedList[1]; // 通过键访问
+string valueByIndex = sortedList.Values[0]; // 通过索引访问值
+int keyByIndex = sortedList.Keys[0]; // 通过索引访问键
+
+if (sortedList.TryGetValue(2, out string value))
+{
+    Console.WriteLine(value);
+}
+
+// 更新元素
+sortedList[1] = "Uno"; // 更新键为1的值
+
+// 删除元素
+sortedList.Remove(1);    // 删除键为1的元素
+sortedList.RemoveAt(0);  // 删除索引为0的元素
+
+//遍历 SortedList
+foreach (var kvp in sortedList)
+{
+    Console.WriteLine($"Key: {kvp.Key}, Value: {kvp.Value}");
+}
+foreach (var key in sortedList.Keys)
+{
+    Console.WriteLine($"Key: {key}");
+}
+foreach (var value in sortedList.Values)
+{
+    Console.WriteLine($"Value: {value}");
+}
+```
+
+对象作为Key
+
+IComparer 其他实现方式参考[IComparer](#IComparer)
+```C#
+//创建
+//重写IComparer
+var sortedList = new SortedList<Person, string>(Comparer<Person>.Create((x, y) => x.Age.CompareTo(y.Age)));
+//添加
+sortedList.Add(new Person
+{
+    Age = 1,
+    Name = "张1"
+}, "张1 value");
+sortedList.Add(new Person
+{
+    Age = 2,
+    Name = "张2"
+}, "张2 value");
+sortedList.Add(new Person
+{
+    Age = 3,
+    Name = "张3"
+}, "张3 value");
+// 访问元素
+// 按Key访问，其他属性不影响最终结果
+var key = new Person
+{
+    Age = 1,
+    Name = "张法师打发打发1"
+};
+var value = sortedList[key];
+Console.WriteLine(value);//张1 value
+string valueByIndex = sortedList.Values[1]; // 通过索引访问值
+Console.WriteLine(valueByIndex);//张2 value
+var keyByIndex = sortedList.Keys[0]; // 通过索引访问键
+Console.WriteLine(keyByIndex);
+
+//// 更新元素
+sortedList[key] = "张1 value updated";
+
+//// 删除元素
+sortedList.Remove(key);    // 删除键为1的元素
+sortedList.RemoveAt(0);  // 删除索引为0的元素
+
+// 遍历 SortedList
+foreach (var kvp in sortedList)
+{
+    Console.WriteLine($"Key: {kvp.Key}, Value: {kvp.Value}");
+}
+foreach (var k in sortedList.Keys)
+{
+    Console.WriteLine($"Key: {k}");
+}
+foreach (var v in sortedList.Values)
+{
+    Console.WriteLine($"Value: {v}");
+}
+```
+:::
+
+#### LinkedList(链表)
+LinkedList\<T> 是 C# 中的一个集合类，用于存储双向链表的数据结构。与 List\<T> 等基于数组的集合不同，LinkedList\<T> 使用节点来存储元素，并且每个节点都有指向前一个节点和后一个节点的引用。这使得它在插入和删除操作方面非常高效，但在随机访问元素时性能较低。
+
+::: tip LinkedList的常用操作
+```C#
+var linkedList = new LinkedList<string>()
+// 添加元素
+linkedList.AddLast("A");
+linkedList.AddLast("B");
+linkedList.AddLast("C")
+// 在特定位置添加元素
+var node = linkedList.Find("B");
+linkedList.AddAfter(node, "D");
+
+// 遍历链表
+foreach (var value in linkedList)
+{
+    Console.WriteLine(value);
+}
+
+// 删除元素
+linkedList.Remove("B");
+
+// 删除第一个元素
+linkedList.RemoveFirst();
+
+// 删除最后一个元素
+linkedList.RemoveLast();
+```
+:::
+
+#### ImmutableList(不可变列表)
+ImmutableList\<T> 是 C# 中的不可变集合类，它属于 System.Collections.Immutable 命名空间。ImmutableList\<T> 提供了一个不可变的列表数据结构，这意味着一旦创建后，它的内容不能被修改。所有修改操作（如添加、删除、更新元素）都会返回一个新的 ImmutableList\<T> 实例，而不会改变原有的实例。
+
+::: tip ImmutableList的常用操作
+```C#
+var list = ImmutableList<int>.Empty
+    .Add(1)
+    .Add(2)
+    .Add(3);
+
+// 添加元素
+var newList = list.Add(4);
+
+// 删除元素
+var updatedList = newList.Remove(2);
+
+// 插入元素
+var listWithInsert = updatedList.Insert(1, 99);
+
+// 更新元素
+var listWithUpdate = listWithInsert.SetItem(1, 100);
+
+// 遍历
+foreach (var item in listWithUpdate)
+{
+    Console.WriteLine(item); // 输出: 1 100 99 4
+}
+```
+:::
+
+### Dictionary
+
+### Set
+
+### Queue
+
+### Stack
+
+### 非泛型集合(不推荐)
+
+### IComparer
 
 ## 表达式
 
+## 语句
+### 迭代器
+
+
 ## 方法
 
-## 类
+## 委托与事件
 
-## 接口
+## 类与接口
 
-## LINQ
-
-## 异常
+## 访问修饰符
 
 ## 面向对象
 
+## LINQ
+
 ## 异步编程
+
+## 异常
 
 ## 内存管理
 
