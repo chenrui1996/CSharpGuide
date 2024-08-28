@@ -13,12 +13,13 @@ export default defineConfig({
       {
         text: 'C#',
         items: [
-          { text: 'C#语言', link: '/c-sharp/programming-language' },
-          { text: '.Net Core', link: '' },
+          { text: 'C#基础', link: '/c-sharp/basic' },
+          { text: 'ASP .Net Core', link: '' },
           { text: 'EF Core', link: '' },
           { text: 'WPF', link: ''},
           { text: 'Winform', link: ''},
           { text: 'MAUI', link: ''},
+          { text: '常见应用', link: '' },
         ]
       },
       {
@@ -102,29 +103,20 @@ export default defineConfig({
       },
     ],
 
-    sidebar: [
-      {
-        text: 'C#',
-        collapsed: true,
-        items: [
-          { text: 'C#语言', link: '/c-sharp/programming-language' },
-          { text: '.Net Core', link: '' },
-          { text: 'EF Core', link: '' },
-          { text: 'WPF', link: ''},
-          { text: 'Winform', link: ''},
-          { text: 'MAUI', link: ''},
-        ]
-      },
-      {
-        text: '前端',
-        collapsed: true,
-        items: [
-          { text: 'HTML/CSS', link: '' },
-          { text: 'JavaScript', link: '' },
-          { text: 'Vue', link: '' },
-        ]
-      },
-    ],
+    sidebar: {
+      "/c-sharp/":[
+        {
+          text: 'C#基础',
+          items: [
+            { text: '概述', link: '/c-sharp/basic/1.概述/'},
+            { text: '结构', link: '/c-sharp/basic/2.结构/' },
+            { text: '类型系统', link: '/c-sharp/basic/3.类型系统/' },
+            { text: '泛型', link: '/c-sharp/basic/4.泛型/' },
+            { text: '集合', link: '/c-sharp/basic/5.集合/' },
+          ]
+        },
+      ]
+    }
 
     // socialLinks: [
     //   // { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
