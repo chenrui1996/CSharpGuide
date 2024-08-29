@@ -13,12 +13,13 @@ export default defineConfig({
       {
         text: 'C#',
         items: [
-          { text: 'C#语言', link: '/c-sharp/programming-language' },
-          { text: '.Net Core', link: '' },
+          { text: 'C#基础', link: '/c-sharp/basic/0.总览' },
+          { text: 'ASP .Net Core', link: '/c-sharp/basic/1.概述' },
           { text: 'EF Core', link: '' },
           { text: 'WPF', link: ''},
           { text: 'Winform', link: ''},
           { text: 'MAUI', link: ''},
+          { text: '常见应用', link: '' },
         ]
       },
       {
@@ -102,33 +103,53 @@ export default defineConfig({
       },
     ],
 
-    sidebar: [
-      {
-        text: 'C#',
-        collapsed: true,
-        items: [
-          { text: 'C#语言', link: '/c-sharp/programming-language' },
-          { text: '.Net Core', link: '' },
-          { text: 'EF Core', link: '' },
-          { text: 'WPF', link: ''},
-          { text: 'Winform', link: ''},
-          { text: 'MAUI', link: ''},
-        ]
-      },
-      {
-        text: '前端',
-        collapsed: true,
-        items: [
-          { text: 'HTML/CSS', link: '' },
-          { text: 'JavaScript', link: '' },
-          { text: 'Vue', link: '' },
-        ]
-      },
-    ],
+    sidebar: {
+      "/c-sharp/":[
+        {
+          base: "/c-sharp/basic/",
+          text: 'C#基础',
+          collapsed: false,
+          items: [
+            { 
+              text: '总览', 
+              link: '/0.总览/',
+            },
+            { 
+              text: '概述', 
+              link: '/1.概述/', 
+            },
+            // { text: '结构', link: '/c-sharp/basic/2.结构/' },
+            { 
+              text: '类型系统', 
+              link: '/3.类型系统/' 
+            },
+            { 
+              text: '泛型', 
+              link: '/4.泛型/' 
+            },
+            { 
+              text: '集合', 
+              link: '/5.集合/' 
+            },
+          ]
+        },
+      ]
+    },
+    
+    docFooter:{
+      prev:false,
+      next:false
+    },
 
-    // socialLinks: [
-    //   // { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    // ]
+
+    outline: {
+      level:"deep",
+      label:"本页内容"
+    },
+
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/chenrui1996/CSharpGuide' }
+    ]
   },
   base: '/CSharpGuide/'
 })
