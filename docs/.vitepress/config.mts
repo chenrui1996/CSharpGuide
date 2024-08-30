@@ -131,14 +131,18 @@ export default defineConfig({
               text: '集合', 
               link: '/5.集合/' 
             },
+            { 
+              text: '运算符与表达式', 
+              link: '/6.运算符与表达式/' 
+            },
           ]
         },
       ]
     },
     
     docFooter:{
-      prev:false,
-      next:false
+      prev: false,
+      next: false
     },
 
 
