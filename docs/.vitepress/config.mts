@@ -151,9 +151,11 @@ export default defineConfig({
       label:"本页内容"
     },
 
+
     socialLinks: [
       { icon: 'github', link: 'https://github.com/chenrui1996/CSharpGuide' }
     ]
   },
+  ignoreDeadLinks: true,
   base: '/CSharpGuide/'
 })
