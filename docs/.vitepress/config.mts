@@ -14,7 +14,7 @@ export default defineConfig({
         text: 'C#',
         items: [
           { text: 'C#基础', link: '/c-sharp/basic/0.总览' },
-          { text: 'ASP .Net Core', link: '/c-sharp/basic/1.概述' },
+          { text: 'ASP .Net Core', link: '' },
           { text: 'EF Core', link: '' },
           { text: 'WPF', link: ''},
           { text: 'Winform', link: ''},
