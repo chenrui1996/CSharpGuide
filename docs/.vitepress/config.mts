@@ -13,8 +13,8 @@ export default defineConfig({
       {
         text: 'C#',
         items: [
-          { text: 'C#基础', link: '/c-sharp/basic/0.总览' },
-          { text: 'ASP .Net Core', link: '/c-sharp/basic/1.概述' },
+          { text: 'C#基础', link: '/c-sharp/basic/0.概述' },
+          { text: 'ASP .Net Core', link: '' },
           { text: 'EF Core', link: '' },
           { text: 'WPF', link: ''},
           { text: 'Winform', link: ''},
@@ -111,12 +111,12 @@ export default defineConfig({
           collapsed: false,
           items: [
             { 
-              text: '总览', 
-              link: '/0.总览/',
+              text: '概述', 
+              link: '/0.概述/',
             },
             { 
-              text: '概述', 
-              link: '/1.概述/', 
+              text: '特性', 
+              link: '/1.特性/', 
             },
             // { text: '结构', link: '/c-sharp/basic/2.结构/' },
             { 
@@ -134,6 +134,14 @@ export default defineConfig({
             { 
               text: '运算符与表达式', 
               link: '/6.运算符与表达式/' 
+            },
+            { 
+              text: '语句', 
+              link: '/7.语句/' 
+            },
+            { 
+              text: '方法', 
+              link: '/8.方法/' 
             },
           ]
         },
