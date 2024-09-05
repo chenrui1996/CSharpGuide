@@ -14,7 +14,7 @@ export default defineConfig({
         text: 'C#',
         items: [
           { text: 'C#基础', link: '/c-sharp/basic/0.概述' },
-          { text: 'ASP .Net Core', link: '' },
+          { text: 'ASP .Net Core', link: '/c-sharp/asp/0.概述' },
           { text: 'EF Core', link: '' },
           { text: 'WPF', link: ''},
           { text: 'Winform', link: ''},
@@ -88,8 +88,13 @@ export default defineConfig({
           { text: '设计模式', link: '' },
         ]
       },
-      { text: 'Git', link: '' },
-      { text: '实践', link: '' },
+      {
+        text: '工具',
+        items: [
+          { text: 'Git', link: '/tools/git/git' },
+          { text: 'Visual Studio', link: '/tools/visual-studio/visual-studio' },
+        ]
+      },
       {
         text: '企业信息化',
         items: [
@@ -104,11 +109,11 @@ export default defineConfig({
     ],
 
     sidebar: {
-      "/c-sharp/":[
+      "/c-sharp/basic/":[
         {
           base: "/c-sharp/basic/",
           text: 'C#基础',
-          collapsed: false,
+          // collapsed: false,
           items: [
             { 
               text: '概述', 
@@ -144,7 +149,41 @@ export default defineConfig({
               link: '/8.方法/' 
             },
           ]
-        },
+        }
+      ],
+      "/c-sharp/asp/":[
+        {
+          base: "/c-sharp/asp/",
+          text: 'ASP .Net Core',
+          // collapsed: false,
+          items: [
+            { 
+              text: '概述', 
+              link: '/0.概述/',
+            },
+            { 
+              text: '程序结构', 
+              link: '/1.程序结构/', 
+            },
+          ]
+        }
+      ],
+      "/tools/":[
+        {
+          base: "/tools/",
+          text: '工具',
+          // collapsed: false,
+          items: [
+            {
+              text: 'Git',
+              link: '/git/git/'
+            },
+            {
+              text: 'Visual Studio', 
+              link: '/visual-studio/visual-studio/'
+            }
+          ]
+        }
       ]
     },
     
