@@ -1,1 +1,0 @@
-import{_ as a,c as e,o as t}from"./chunks/framework.DNw8SpTU.js";const m=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"c-sharp/basic/12.LINQ.md","filePath":"c-sharp/basic/12.LINQ.md"}'),s={name:"c-sharp/basic/12.LINQ.md"};function c(r,o,n,p,i,_){return t(),e("div")}const f=a(s,[["render",c]]);export{m as __pageData,f as default};
