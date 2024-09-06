@@ -148,6 +148,14 @@ export default defineConfig({
               text: '方法', 
               link: '/8.方法/' 
             },
+            { 
+              text: '委托与事件', 
+              link: '/9.委托与事件/' 
+            },
+            { 
+              text: '类与接口', 
+              link: '/10.类与接口/' 
+            },
           ]
         }
       ],
