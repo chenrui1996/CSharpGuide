@@ -4,9 +4,9 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "CSharpGuide",
   description: "CSharpGuide",
-  head: [['link', { rel: 'icon', type: "image/x-icon", href: 'logo.png'}]],
+  head: [['link', { rel: 'icon', type: "image/x-icon", href: 'logo.png' }]],
   themeConfig: {
-    logo:'/logo.png',
+    logo: '/logo.png',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: '主页', link: '/' },
@@ -16,9 +16,9 @@ export default defineConfig({
           { text: 'C#基础', link: '/c-sharp/basic/0.概述' },
           { text: 'ASP .Net Core', link: '/c-sharp/asp/0.概述' },
           { text: 'EF Core', link: '' },
-          { text: 'WPF', link: ''},
-          { text: 'Winform', link: ''},
-          { text: 'MAUI', link: ''},
+          { text: 'WPF', link: '' },
+          { text: 'Winform', link: '' },
+          { text: 'MAUI', link: '' },
           { text: '常见应用', link: '' },
         ]
       },
@@ -45,7 +45,7 @@ export default defineConfig({
           { text: 'MySQL', link: '' },
           { text: 'PostgreSQL', link: '' },
           { text: 'SQL Server', link: '' },
-          { text: 'Oracle', link: ''}
+          { text: 'Oracle', link: '' }
         ]
       },
       {
@@ -54,7 +54,7 @@ export default defineConfig({
           { text: 'IIS', link: '' },
           { text: 'Docker', link: '' },
           { text: 'K8S', link: '' },
-          { text: 'CI/DI', link: ''},
+          { text: 'CI/DI', link: '' },
           { text: 'Linux', link: '' },
         ]
       },
@@ -65,10 +65,10 @@ export default defineConfig({
           { text: '接口', link: '' },
           { text: 'Modbus', link: '' },
           { text: 'S7', link: '' },
-          { text: 'Serial', link: ''},
-          { text: 'Bluetooth', link: ''},
-          { text: 'Zigbee', link: ''},
-          { text: '消息队列', link: ''},
+          { text: 'Serial', link: '' },
+          { text: 'Bluetooth', link: '' },
+          { text: 'Zigbee', link: '' },
+          { text: '消息队列', link: '' },
         ]
       },
       {
@@ -109,74 +109,78 @@ export default defineConfig({
     ],
 
     sidebar: {
-      "/c-sharp/basic/":[
+      "/c-sharp/basic/": [
         {
           base: "/c-sharp/basic/",
           text: 'C#基础',
           // collapsed: false,
           items: [
-            { 
-              text: '概述', 
+            {
+              text: '概述',
               link: '/0.概述/',
             },
-            { 
-              text: '特性', 
-              link: '/1.特性/', 
+            {
+              text: '特性',
+              link: '/1.特性/',
             },
             // { text: '结构', link: '/c-sharp/basic/2.结构/' },
-            { 
-              text: '类型系统', 
-              link: '/3.类型系统/' 
+            {
+              text: '类型系统',
+              link: '/3.类型系统/'
             },
-            { 
-              text: '泛型', 
-              link: '/4.泛型/' 
+            {
+              text: '泛型',
+              link: '/4.泛型/'
             },
-            { 
-              text: '集合', 
-              link: '/5.集合/' 
+            {
+              text: '集合',
+              link: '/5.集合/'
             },
-            { 
-              text: '运算符与表达式', 
-              link: '/6.运算符与表达式/' 
+            {
+              text: '运算符与表达式',
+              link: '/6.运算符与表达式/'
             },
-            { 
-              text: '语句', 
-              link: '/7.语句/' 
+            {
+              text: '语句',
+              link: '/7.语句/'
             },
-            { 
-              text: '方法', 
-              link: '/8.方法/' 
+            {
+              text: '方法',
+              link: '/8.方法/'
             },
-            { 
-              text: '委托与事件', 
-              link: '/9.委托与事件/' 
+            {
+              text: '委托与事件',
+              link: '/9.委托与事件/'
             },
-            { 
-              text: '类与接口', 
-              link: '/10.类与接口/' 
+            {
+              text: '类与接口',
+              link: '/10.类与接口/'
+            },
+            {
+              text: '面向对象',
+              link: '/11.面向对象/'
             },
           ]
         }
       ],
-      "/c-sharp/asp/":[
+      "/c-sharp/asp/": [
         {
           base: "/c-sharp/asp/",
           text: 'ASP .Net Core',
           // collapsed: false,
           items: [
-            { 
-              text: '概述', 
+            {
+              text: '概述',
               link: '/0.概述/',
             },
-            { 
-              text: '程序结构', 
-              link: '/1.程序结构/', 
+            {
+              text: '程序结构',
+              link: '/1.程序结构/',
             },
           ]
         }
       ],
-      "/tools/":[
+      "/tools/": [
         {
           base: "/tools/",
           text: '工具',
@@ -187,23 +191,23 @@ export default defineConfig({
               link: '/git/git/'
             },
             {
-              text: 'Visual Studio', 
+              text: 'Visual Studio',
               link: '/visual-studio/visual-studio/'
             }
           ]
         }
       ]
     },
-    
-    docFooter:{
+
+    docFooter: {
       prev: false,
       next: false
     },
 
 
     outline: {
-      level:"deep",
-      label:"本页内容"
+      level: "deep",
+      label: "本页内容"
     },
 
 
