@@ -160,6 +160,14 @@ export default defineConfig({
               text: '面向对象',
               link: '/11.面向对象/'
             },
+            {
+              text: '语言集成查询 (LINQ)',
+              link: '/12.LINQ/'
+            },
+            {
+              text: '异步编程与多线程',
+              link: '/13.异步编程与多线程/'
+            },
           ]
         }
       ],
