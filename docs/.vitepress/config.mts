@@ -14,8 +14,7 @@ export default defineConfig({
         text: 'C#',
         items: [
           { text: 'C#基础', link: '/c-sharp/basic/0.概述' },
-          { text: 'ASP .Net Core', link: '/c-sharp/asp/0.概述' },
-          { text: 'EF Core', link: '' },
+          { text: 'Web后端', link: '/c-sharp/web/0.概述' },
           { text: 'WPF', link: '' },
           { text: 'Winform', link: '' },
           { text: 'MAUI', link: '' },
@@ -171,10 +170,10 @@ export default defineConfig({
           ]
         }
       ],
-      "/c-sharp/asp/": [
+      "/c-sharp/web/": [
         {
-          base: "/c-sharp/asp/",
-          text: 'ASP .Net Core',
+          base: "/c-sharp/web/",
+          text: 'Web后端',
           // collapsed: false,
           items: [
             {
@@ -182,8 +181,21 @@ export default defineConfig({
               link: '/0.概述/',
             },
             {
-              text: '程序结构',
-              link: '/1.程序结构/',
+              text: 'WebAPI',
+              items: [
+                {
+                  text: '创建WebAPI项目',
+                  link: '/1.创建WebAPI项目/',
+                },
+                {
+                  text: '代码结构',
+                  link: '/2.代码结构/',
+                },
+                {
+                  text: 'Controller',
+                  link: '/3.Controller/',
+                },
+              ]
             },
           ]
         }
