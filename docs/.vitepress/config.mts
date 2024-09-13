@@ -181,11 +181,11 @@ export default defineConfig({
               link: '/0.概述/',
             },
             {
-              text: 'WebAPI',
+              text: 'ASP .Net',
               items: [
                 {
-                  text: '创建WebAPI项目',
-                  link: '/1.创建WebAPI项目/',
+                  text: '创建ASP .Net Core项目',
+                  link: '/1.创建ASP.NetCore项目/',
                 },
                 {
                   text: '代码结构',
