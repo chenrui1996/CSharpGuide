@@ -184,7 +184,7 @@ export default defineConfig({
               text: 'ASP .Net',
               items: [
                 {
-                  text: '创建ASP .Net Core项目',
+                  text: 'ASP .Net Core概述',
                   link: '/1.创建ASP.NetCore项目/',
                 },
                 {
