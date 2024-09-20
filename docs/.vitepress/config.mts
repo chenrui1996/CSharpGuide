@@ -14,7 +14,7 @@ export default defineConfig({
         text: 'C#',
         items: [
           { text: 'C#基础', link: '/c-sharp/basic/0.概述' },
-          { text: 'Web后端', link: '/c-sharp/web/0.概述' },
+          { text: 'Web后端', link: '/c-sharp/web/0.引言' },
           { text: 'WPF', link: '' },
           { text: 'Winform', link: '' },
           { text: 'MAUI', link: '' },
@@ -177,23 +177,62 @@ export default defineConfig({
           // collapsed: false,
           items: [
             {
-              text: '概述',
-              link: '/0.概述/',
+              text: '引言',
+              link: '/0.引言/',
             },
             {
-              text: 'ASP .Net',
+              text: '代码结构与基本功能',
+              link: '/1.代码结构与基本功能/',
+            },
+            {
+              text: '路由和控制器',
+              link: '/2.路由和控制器/',
+            },
+            {
+              text: '生命周期',
+              link: '/3.生命周期/',
+            },
+            {
+              text: '中间件',
+              link: '/4.中间件/',
+            },
+            {
+              text: '依赖注入',
+              link: '/5.依赖注入/',
+            },
+            {
+              text: 'EF Core',
+              link: '/6.EF Core/',
+            },
+            {
+              text: '视图与UI',
+              link: '/7.视图与UI/',
+            },
+            {
+              text: '认证与授权',
+              link: '/8.认证与授权/',
+            },
+            {
+              text: '部署与发布',
+              link: '/9.部署与发布/',
+            },
+            {
+              text: '其他实践',
+              base: "/c-sharp/web/其他实践/",
               items: [
                 {
-                  text: 'ASP .Net Core概述',
-                  link: '/1.创建ASP.NetCore项目/',
+                  text: '使用SignalR实现实时通信',
+                  link: '/1.使用SignalR实现实时通信/',
                 },
                 {
-                  text: '代码结构',
-                  link: '/2.代码结构/',
+                  text: '使用个gRPC实现高可用服务',
+                  link: '/2.使用个gRPC实现高可用服务/',
                 },
                 {
-                  text: 'Controller',
-                  link: '/3.Controller/',
+                  text: '使用Redis',
+                },
+                {
+                  text: '使用Quarze',
                 },
               ]
             },
