@@ -47,16 +47,16 @@ export default defineConfig({
           { text: 'Oracle', link: '' }
         ]
       },
-      {
-        text: '部署',
-        items: [
-          { text: 'IIS', link: '' },
-          { text: 'Docker', link: '' },
-          { text: 'K8S', link: '' },
-          { text: 'CI/DI', link: '' },
-          { text: 'Linux', link: '' },
-        ]
-      },
+      // {
+      //   text: '部署',
+      //   items: [
+      //     { text: 'IIS', link: '' },
+      //     { text: 'Docker', link: '' },
+      //     { text: 'K8S', link: '' },
+      //     { text: 'CI/DI', link: '' },
+      //     { text: 'Linux', link: '' },
+      //   ]
+      // },
       {
         text: '通信',
         items: [
