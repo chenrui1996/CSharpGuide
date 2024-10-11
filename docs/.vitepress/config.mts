@@ -185,36 +185,40 @@ export default defineConfig({
               link: '/1.代码结构与基本功能/',
             },
             {
-              text: '路由和控制器',
-              link: '/2.路由和控制器/',
+              text: '主机(Host)',
+              link: '/2.主机/',
             },
             {
-              text: '生命周期',
-              link: '/3.生命周期/',
+              text: '依赖注入(Dependency injection)',
+              link: '/3.依赖注入/',
             },
             {
-              text: '中间件',
-              link: '/4.中间件/',
+              text: '中间件(Middleware)',
+              link: '/4.中间件与管道/',
             },
             {
-              text: '依赖注入',
-              link: '/5.依赖注入/',
+              text: '路由和控制器(Routing)',
+              link: '/5.路由和控制器/',
+            },
+            {
+              text: '其他基本功能',
+              link: '/6.其他基本功能/',
             },
             {
               text: 'EF Core',
-              link: '/6.EF Core/',
+              link: '/7.EF Core/',
             },
             {
               text: '视图与UI',
-              link: '/7.视图与UI/',
+              link: '/8.视图与UI/',
             },
             {
               text: '认证与授权',
-              link: '/8.认证与授权/',
+              link: '/9.认证与授权/',
             },
             {
               text: '部署与发布',
-              link: '/9.部署与发布/',
+              link: '/10.部署与发布/',
             },
             {
               text: '其他实践',
