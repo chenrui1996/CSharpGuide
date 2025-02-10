@@ -3,9 +3,9 @@
 ## 官网用法
 访问Deepseek官网，注册账号并开始对话。
 
-- 官网地址：https://www.deepseek.com/
-- 提示库：https://api-docs.deepseek.com/zh-cn/prompt-library/
-- API地址：https://api-docs.deepseek.com/zh-cn/
+- 官网地址：https://www.deepseek.com
+- 提示库：https://api-docs.deepseek.com/zh-cn/prompt-library
+- API地址：https://api-docs.deepseek.com/zh-cn
 - Github地址：https://github.com/deepseek-ai
 
 ![图片](pictures/deepseek.png)
@@ -57,7 +57,7 @@
 
 如：
 
-Open WebUI：https://docs.openwebui.com/
+Open WebUI：https://docs.openwebui.com
 Chatbot UI：https://chatboxai.app/en
 
 等
@@ -125,7 +125,7 @@ Embedder配置。（Embedder 模型（嵌入模型）主要用于将文本、图
 ::: tip webApi接口
 anythingllm 提供了webApi接口。
 
-默认接口文档地址：http://localhost:3001/api/docs/
+默认接口文档地址：http://localhost:3001/api/docs
 
 ![图片](pictures/AnythingLLMApi.png)
 :::
