@@ -14,9 +14,15 @@ hero:
   #   src: /logo.png
   
   actions:
-    - theme: brand
+    - theme: alt
       text: Deepseek使用
       link: /tools/deepseek/deepseek
+    - theme: alt
+      text: 常用工具
+      link: /tools/common_tools/common_tools/
+    - theme: alt
+      text: Office工具
+      link: /tools/office/office_tools/
 
 features:
   - title: C#基础

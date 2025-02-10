@@ -90,6 +90,18 @@ export default defineConfig({
       {
         text: '工具',
         items: [
+          {
+            text: 'DeepSeek使用',
+            link: '/tools/deepseek/deepseek/'
+          },
+          {
+            text: '常用工具',
+            link: '/tools/common_tools/common_tools/'
+          },
+          {
+            text: 'Office工具',
+            link: '/tools/office/office_tools/'
+          },
           { text: 'Git', link: '/tools/git/git' },
           { text: 'Visual Studio', link: '/tools/visual-studio/visual-studio' },
         ]
@@ -250,8 +262,16 @@ export default defineConfig({
           // collapsed: false,
           items: [
             {
-              text: 'DeepSeek',
+              text: 'DeepSeek使用',
               link: '/deepseek/deepseek/'
+            },
+            {
+              text: '常用工具',
+              link: '/common_tools/common_tools/'
+            },
+            {
+              text: 'Office工具',
+              link: '/office/office_tools/'
             },
             {
               text: 'Git',
