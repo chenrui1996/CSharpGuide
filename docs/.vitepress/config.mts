@@ -250,6 +250,10 @@ export default defineConfig({
           // collapsed: false,
           items: [
             {
+              text: 'DeepSeek',
+              link: '/deepseek/deepseek/'
+            },
+            {
               text: 'Git',
               link: '/git/git/'
             },
