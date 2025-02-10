@@ -57,7 +57,7 @@
 
 如：
 
-Open WebUI：https://docs.openwebui.com/
+Open WebUI：https://docs.openwebui.com
 Chatbot UI：https://chatboxai.app/en
 
 等
