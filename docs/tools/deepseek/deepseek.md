@@ -82,9 +82,9 @@ API 地址：https://github.com/ollama/ollama/blob/main/docs/api.md
 
 打开下载的安装包，按照提示安装。
 
-![图片](pictures/AnythingLLMinstall.png)
+![图片](pictures/AnythingLLMInstall.png)
 
-![图片](pictures/AnythingLLMinstall2.png)
+![图片](pictures/AnythingLLMInstall2.png)
 
 3. **运行anythingllm**
 
