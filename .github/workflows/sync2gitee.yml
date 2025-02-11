@@ -1,18 +1,36 @@
-name: Sync To Gitee
+name: Sync to Gitee
 
-on: [ push, delete, create ]
+on:
+  push:
+    branches:
+      - main  # 监听 `main` 分支的更新，触发同步
 
 jobs:
-  build:
+  sync:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Sync to Gitee
-        uses: wearerequired/git-mirror-action@master
-        env:
-          # 注意在 仓库嗯对  Settings-> Environment->Environment secrets Secrets 配置 GITEE_RSA_PRIVATE_KEY
-          SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
-        with:
-          # 注意替换为你的 GitHub 源仓库地址
-          source-repo: git@github.com:chenrui1996/CSharpGuide.git
-          # 注意替换为你的 Gitee 目标仓库地址
-          destination-repo: git@gitee.com:chenrui3777/CSharpGuide.git
+    - name: Checkout GitHub repository
+      uses: actions/checkout@v3
+
+    - name: Set up SSH key for GitHub
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.GITEE_RSA_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com >> ~/.ssh/known_hosts  # 添加 GitHub 的公钥到 known_hosts，以防止首次连接时的警告
+
+    - name: Set up SSH key for Gitee
+      run: |
+        echo "${{ secrets.GITEE_RSA_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan gitee.com >> ~/.ssh/known_hosts  # 添加 Gitee 的公钥到 known_hosts
+
+    - name: Add Gitee remote
+      run: |
+        git remote add gitee git@gitee.com:chenrui3777/CSharpGuide.git  # 将 Gitee 仓库作为远程源
+        git fetch gitee
+
+    - name: Push to Gitee
+      run: |
+        git push --force gitee main  # 将 `main` 分支的最新代码推送到 Gitee
