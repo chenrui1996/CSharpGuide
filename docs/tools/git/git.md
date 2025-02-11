@@ -35,3 +35,8 @@ git commit -m "Update .gitignore and stop tracking certain files"
 # git push
 git push origin <分支名> 
 ```
+
+## 生成SSH密钥
+
+- [Github 教程](https://docs.github.com/zh/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
+- [Gitee 教程](https://gitee.com/help/articles/4181#article-header0)

@@ -300,7 +300,15 @@ export default defineConfig({
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/chenrui1996/CSharpGuide' }
-    ]
+    ],
+
+    footer: {
+      message: 'Released by Seven Chen'
+    },
+
+    search: {
+      provider: 'local'
+    }
   },
   ignoreDeadLinks: true,
   base: '/CSharpGuide/'
