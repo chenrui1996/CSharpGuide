@@ -13,6 +13,6 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
         with:
           # 注意替换为你的 GitHub 源仓库地址
-          source-repo: https://github.com/chenrui1996/CSharpGuide.git
+          source-repo: git@github.com:chenrui1996/CSharpGuide.git
           # 注意替换为你的 Gitee 目标仓库地址
-          destination-repo: https://gitee.com/chenrui3777/CSharpGuide.git
+          destination-repo: git@gitee.com:chenrui3777/CSharpGuide.git
