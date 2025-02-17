@@ -1,0 +1,15 @@
+name: Sync to Coding
+on:
+  push:
+    branches:
+      - main  # 同步的分支名称
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Sync to Coding
+        run: |
+          git remote add coding https://e.coding.net/g-gepz9061/csharpguide/CSharpGuide.git
+          git push coding main  # 推送的分支名称
