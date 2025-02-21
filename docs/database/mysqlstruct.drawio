@@ -1,0 +1,49 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.7.17 Chrome/128.0.6613.36 Electron/32.0.1 Safari/537.36" version="24.7.17">
+  <diagram name="第 1 页" id="X9T_YRYBO7RLB6FG-Pke">
+    <mxGraphModel dx="1036" dy="609" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="VKgHyVWFlM0yEPDEtCsd-7" value="应用程序" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;fontStyle=1;fontSize=13;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="120" y="90" width="610" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VKgHyVWFlM0yEPDEtCsd-8" value="" style="rounded=0;whiteSpace=wrap;html=1;glass=0;shadow=0;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;fontStyle=1;fontSize=13;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="120" y="240" width="610" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="VKgHyVWFlM0yEPDEtCsd-9" value="连接层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;fontSize=13;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="135" y="260" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VKgHyVWFlM0yEPDEtCsd-10" value="服务层" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;fontSize=13;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="135" y="343" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VKgHyVWFlM0yEPDEtCsd-11" value="存储引擎" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=13;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="135" y="427" width="580" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VKgHyVWFlM0yEPDEtCsd-12" value="文件系统" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=13;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="135" y="510" width="580" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VKgHyVWFlM0yEPDEtCsd-13" value="服务管理与公共组件" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=13;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="505" y="260" width="210" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="VKgHyVWFlM0yEPDEtCsd-15" value="连接驱动(MySql Conectors)&lt;div&gt;Connector/Net, Java, C/C++, OBDC and others.&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;fontStyle=1;fontSize=13;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="120" y="165" width="610" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="VKgHyVWFlM0yEPDEtCsd-16" value="MySQL Server" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=13;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="370" y="590" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="VKgHyVWFlM0yEPDEtCsd-17" value="" style="shape=doubleArrow;direction=south;whiteSpace=wrap;html=1;fontStyle=1;fontSize=13;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="260" y="130" width="20" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="VKgHyVWFlM0yEPDEtCsd-18" value="" style="shape=doubleArrow;direction=south;whiteSpace=wrap;html=1;fontStyle=1;fontSize=13;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="570" y="130" width="20" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="VKgHyVWFlM0yEPDEtCsd-19" value="" style="shape=doubleArrow;direction=south;whiteSpace=wrap;html=1;fontStyle=1;fontSize=13;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="190" y="210" width="20" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="VKgHyVWFlM0yEPDEtCsd-20" value="" style="shape=doubleArrow;direction=south;whiteSpace=wrap;html=1;fontStyle=1;fontSize=13;fontFamily=Helvetica;" parent="1" vertex="1">
+          <mxGeometry x="380" y="210" width="20" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

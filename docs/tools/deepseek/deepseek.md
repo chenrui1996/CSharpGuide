@@ -7,6 +7,7 @@
 - 提示库：https://api-docs.deepseek.com/zh-cn/prompt-library
 - API地址：https://api-docs.deepseek.com/zh-cn
 - Github地址：https://github.com/deepseek-ai
+- 实用集成：https://github.com/deepseek-ai/awesome-deepseek-integration/blob/main/README_cn.md
 
 ![图片](pictures/deepseek.png)
 
@@ -130,6 +131,34 @@ anythingllm 提供了webApi接口。
 
 ![图片](pictures/AnythingLLMApi.png)
 :::
+
+## 集成到Office
+
+1. **安装Office AI插件**
+
+插件地址：https://gptforwork.com/help
+
+::: danger 注意
+插件多数模型为收费版本。请谨慎选择。
+:::
+
+以excel为例（word类似），点开GPT for Excel，选择Install GPT for Excel and Word。
+
+![图片](pictures/OfficeAIInstall.png)
+
+然后会弹出一个只读的Excel文档用来配置：
+
+![图片](pictures/OfficeAIInstall1.png)
+
+配置为本地模型：
+
+![图片](pictures/OfficeAIInstall2.png)
+
+使用实例：
+
+在word中生成一段文字：
+
+
 
 ## 集成到VSCode
 
