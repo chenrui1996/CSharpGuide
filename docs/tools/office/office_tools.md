@@ -1,5 +1,11 @@
 # 常用开源office工具整理
 
+## office安装工具
+Office-Tool：https://github.com/YerongAI/Office-Tool
+
+## AI助手
+gptforwork：https://gptforwork.com/help/
+
 ## PDF转word
 
 pdf2docxserver : https://github.com/infrost/pdf2docxserver

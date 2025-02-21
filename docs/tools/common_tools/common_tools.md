@@ -34,3 +34,7 @@
 ## scrcpy (手机投屏工具)
 
 下载地址：https://github.com/Genymobile/scrcpy
+
+## Mermaid（图表和图表工具）
+
+官网地址：https://mermaid.js.org/

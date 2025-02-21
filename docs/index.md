@@ -34,7 +34,11 @@ features:
     details: Host、DI、中间件、路由、EF Core、授权、部署等。
     link: /c-sharp/web/0.引言
     linkText: 更多
-
+ 
+  - title: 数据库 
+    details: 数据库的分类，原理及使用
+    link: /database/1.数据库概述及运行原理
+    linkText: 更多
 ---
 
 <style>

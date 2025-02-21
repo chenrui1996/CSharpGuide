@@ -1,7 +1,10 @@
 import { defineConfig } from 'vitepress'
+// https://emersonbottero.github.io/vitepress-plugin-mermaid/guide/getting-started.html
+// https://mermaid.js.org/
+import { withMermaid } from "vitepress-plugin-mermaid"
 
-// https://vitepress.dev/reference/site-config
-export default defineConfig({
+// https://vitepress.vuejs.org/
+export default withMermaid({
   title: "CSharpGuide",
   description: "CSharpGuide",
   head: [['link', { rel: 'icon', type: "image/x-icon", href: 'logo.png' }]],
@@ -40,11 +43,26 @@ export default defineConfig({
       {
         text: '数据库',
         items: [
-          { text: 'Redis', link: '' },
-          { text: 'MySQL', link: '' },
-          { text: 'PostgreSQL', link: '' },
-          { text: 'SQL Server', link: '' },
-          { text: 'Oracle', link: '' }
+          {
+            text: '数据库概述及运行原理',
+            link: '/database/1.数据库概述及运行原理'
+          },
+          {
+            text: 'MySQL的使用',
+            link: '/database/2.MySQL的使用'
+          },
+          {
+            text: 'PostgreSQL的使用',
+            link: '/database/3.PostgreSQL的使用'
+          },
+          {
+            text: 'SQL Server的使用',
+            link: '/database/4.SQL Server的使用'
+          },
+          {
+            text: 'Oracle使用',
+            link: '/database/5.Oracle使用'
+          }
         ]
       },
       // {
@@ -283,6 +301,35 @@ export default defineConfig({
             }
           ]
         }
+      ],
+      "/database/": [
+        {
+          base: "/database/",
+          text: '数据库',
+          // collapsed: false,
+          items: [
+            {
+              text: '数据库概述及运行原理',
+              link: '/1.数据库概述及运行原理'
+            },
+            {
+              text: 'MySQL的使用',
+              link: '/2.MySQL的使用'
+            },
+            {
+              text: 'PostgreSQL的使用',
+              link: '/3.PostgreSQL的使用'
+            },
+            {
+              text: 'SQL Server的使用',
+              link: '/4.SQL Server的使用'
+            },
+            {
+              text: 'Oracle使用',
+              link: '/5.Oracle使用'
+            }
+          ]
+        }
       ]
     },
 
@@ -303,7 +350,8 @@ export default defineConfig({
     ],
 
     footer: {
-      message: 'Released by Seven Chen'
+      message: 'Document Base on <a href="https://vitepress.dev/zh/" target="_blank" style="color: var(--vp-c-brand)">VitePress</a>.',
+      copyright: 'Released by Seven Chen.'
     },
 
     search: {
@@ -311,5 +359,21 @@ export default defineConfig({
     }
   },
   ignoreDeadLinks: true,
+  markdown: {
+    container: {
+      tipLabel: '提示',
+      warningLabel: '警告',
+      dangerLabel: '危险',
+      infoLabel: '信息',
+      detailsLabel: '详细信息'
+    }
+  },
+  mermaid: {
+    // Mermaid 初始化配置
+    theme: 'dark',
+    themeVariables: {
+      fontSize: "16px"
+    }
+  },
   base: '/CSharpGuide/'
-})
+});
