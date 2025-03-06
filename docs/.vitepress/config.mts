@@ -370,7 +370,7 @@ export default withMermaid({
   },
   mermaid: {
     // Mermaid 初始化配置
-    theme: 'dark',
+    theme: 'default',
     themeVariables: {
       fontSize: "16px"
     }
