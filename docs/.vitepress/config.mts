@@ -27,9 +27,12 @@ export default withMermaid({
       {
         text: '前端',
         items: [
-          { text: 'HTML/CSS', link: '' },
-          { text: 'JavaScript', link: '' },
-          { text: 'Vue', link: '' },
+          { text: '前端知识结构', link: '/frontend/1.前端知识结构' },
+          { text: 'HTML&CSS', link: '/frontend/2.HTML&CSS' },
+          { text: 'JavaScript', link: '/frontend/3.JavaScript' },
+          { text: 'Vue', link: '/frontend/4.Vue' },
+          { text: '前端工程化', link: '/frontend/5.前端工程化' },
+          { text: '其他', link: '/frontend/6.其他' },
         ]
       },
       {
@@ -328,6 +331,24 @@ export default withMermaid({
               text: 'Oracle使用',
               link: '/5.Oracle使用'
             }
+          ]
+        }
+      ],
+      "/frontend/": [
+        {
+          base: "/frontend/",
+          text: '前端',
+          // collapsed: false,
+          items: [
+            {
+              text: '前端知识结构',
+              link: '/1.前端知识结构'
+            },
+            { text: 'HTML&CSS', link: '/2.HTML&CSS' },
+            { text: 'JavaScript', link: '/3.JavaScript' },
+            { text: 'Vue', link: '/4.Vue' },
+            { text: '前端工程化', link: '/5.前端工程化' },
+            { text: '其他', link: '/6.其他' },
           ]
         }
       ]
