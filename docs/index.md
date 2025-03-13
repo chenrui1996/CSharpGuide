@@ -57,7 +57,7 @@ features:
 window.onload = function () {
     setTimeout(() => {
       changeGridClass();
-    }, 100);
+    }, 0);
 };
 
 function changeGridClass() {
