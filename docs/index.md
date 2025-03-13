@@ -36,8 +36,13 @@ features:
     linkText: 更多
  
   - title: 数据库 
-    details: 数据库的分类，原理及使用
+    details: 数据库的分类，原理及使用。
     link: /database/1.数据库概述及运行原理
+    linkText: 更多
+  
+  - title: 前端 
+    details: HTML、CSS、JS、Vue及打包部署等。
+    link: /frontend/1.前端知识结构
     linkText: 更多
 ---
 
@@ -47,3 +52,34 @@ features:
   --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe, #41d1ff);
 }
 </style>
+
+<script setup>
+window.onload = function () {
+    setTimeout(() => {
+      changeGridClass();
+    }, 100);
+};
+
+function changeGridClass() {
+    // 选择 .Items 容器
+    const itemsContainer = document.querySelector(".VPHomeFeatures .container .items");
+
+    if (itemsContainer) {
+        const itemElements = itemsContainer.querySelectorAll(".item");
+
+        if (itemElements.length >= 4) {
+            for (let i = 0; i < 3; i++) {
+                if (itemElements[i].classList.contains("grid-4")) {
+                    itemElements[i].classList.replace("grid-4", "grid-3");
+                }
+            }
+
+            for (let i = 3; i < 4; i++) {
+                if (itemElements[i].classList.contains("grid-4")) {
+                    itemElements[i].classList.replace("grid-4", "grid-1");
+                }
+            }
+        }
+    }
+}
+</script>
