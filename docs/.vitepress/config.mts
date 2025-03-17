@@ -396,5 +396,6 @@ export default withMermaid({
       fontSize: "16px"
     }
   },
+
   base: '/CSharpGuide/'
 });

@@ -55,10 +55,13 @@ features:
 
 <script setup>
 window.onload = function () {
-    setTimeout(() => {
       changeGridClass();
-    }, 0);
 };
+
+// document.addEventListener('DOMContentLoaded', function () {
+//     changeGridClass();
+// });
+
 
 function changeGridClass() {
     // 选择 .Items 容器
