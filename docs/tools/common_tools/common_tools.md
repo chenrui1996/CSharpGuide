@@ -11,9 +11,17 @@
 
 下载地址：https://github.com/jgraph/drawio-desktop/releases
 
-## GitMind (思维导图绘制工具)
+## 思维导图绘制工具
 
-下载地址：https://gitmind.com/
+[gitmind （非免费）](https://gitmind.com/)
+
+[百度脑图 （免费在线）](https://naotu.baidu.com/home)
+
+[freemind（免费页面不好看）](https://sourceforge.net/projects/freemind/postdownload)
+
+[my-mind（免费在线）](https://my-mind.github.io/)
+
+[jsmind（js库）](https://hizzgdev.github.io/jsmind/)
 
 ## BandZip (压缩软件)
 
@@ -38,3 +46,11 @@
 ## Mermaid（图表和图表工具）
 
 官网地址：https://mermaid.js.org/
+
+## Lux（视频爬取工具）
+
+官网地址：https://github.com/iawia002/lux
+
+## iconfont（图标库）
+
+官网地址：https://www.iconfont.cn/
