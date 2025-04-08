@@ -7,7 +7,29 @@ import { withMermaid } from "vitepress-plugin-mermaid"
 export default withMermaid({
   title: "CSharpGuide",
   description: "CSharpGuide",
-  head: [['link', { rel: 'icon', type: "image/x-icon", href: 'logo.png' }]],
+  head: [['link', { rel: 'icon', type: "image/x-icon", href: 'logo.png' }], [
+    'script',
+    {},
+    `
+      function exportMermaidDiagram(e) {
+        const parentElement = e.parentElement.parentElement;
+    
+        const svg = parentElement.querySelector(".mermaid svg");
+        if(!svg){
+          return;
+        }
+        const svgData = new XMLSerializer().serializeToString(svg);
+        const blob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+    
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "mermaid-diagram.svg";
+        link.click();
+        URL.revokeObjectURL(url);
+      }
+    `
+  ]],
   themeConfig: {
     logo: '/logo.png',
     // https://vitepress.dev/reference/default-theme-config
@@ -396,5 +418,6 @@ export default withMermaid({
       fontSize: "16px"
     }
   },
+
   base: '/CSharpGuide/'
 });

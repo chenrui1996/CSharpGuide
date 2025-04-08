@@ -54,13 +54,13 @@ features:
 </style>
 
 <script setup>
-window.onload = function () {
-    setTimeout(() => {
-      changeGridClass();
-    }, 0);
-};
+import { onMounted } from "vue";
 
-function changeGridClass() {
+onMounted(() => {
+  changeGridClass();
+});
+
+const changeGridClass = () => {
     // 选择 .Items 容器
     const itemsContainer = document.querySelector(".VPHomeFeatures .container .items");
 
@@ -82,4 +82,5 @@ function changeGridClass() {
         }
     }
 }
+
 </script>
