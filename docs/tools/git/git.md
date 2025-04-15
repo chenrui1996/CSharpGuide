@@ -226,3 +226,14 @@ git push origin <分支名>
 
 - [Github 教程](https://docs.github.com/zh/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 - [Gitee 教程](https://gitee.com/help/articles/4181#article-header0)
+
+
+## 常见问题
+
+### git clone时出现443， Couldn‘t connect to server问题解决
+
+``` cmd
+# 修改成自己的代理端口号（设置 --> 网络与Internet --> 查找代理）
+git config --global http.proxy http://127.0.0.1:7890
+git config --global https.proxy http://127.0.0.1:7890
+```
