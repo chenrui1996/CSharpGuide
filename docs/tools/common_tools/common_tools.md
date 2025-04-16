@@ -53,4 +53,10 @@
 
 ## iconfont（图标库）
 
-官网地址：https://www.iconfont.cn/
+https://www.iconfont.cn/
+
+https://fonts.google.com/icons
+
+## ScreenToGif（Gif录制工具）
+
+官网地址：https://github.com/NickeManarin/ScreenToGif
