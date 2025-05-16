@@ -227,6 +227,76 @@ git push origin <分支名>
 - [Github 教程](https://docs.github.com/zh/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 - [Gitee 教程](https://gitee.com/help/articles/4181#article-header0)
 
+### 自动打包winform/WPF程序
+
+1. 创建 GitHub Actions Workflow 文件
+
+``` yaml
+name: Publish Windows Installer
+
+on:
+  push:
+    tags:
+      - 'v*'   # 只在 tag push 时触发，如 v1.0.0
+
+permissions:
+  contents: write  # ✅ 关键：给 GITHUB_TOKEN 写权限以创建 Release
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'  # 根据你的项目选择版本
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build and publish
+      run: dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
+
+    - name: Zip published files
+      run: Compress-Archive -Path ./Cutdown/bin/Release/net8.0-windows/win-x64/publish/* -DestinationPath ./output.zip
+
+    - name: Upload to GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: output.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+2. 创建并推送一个 tag
+
+``` bash
+git tag v1.0.0
+git push origin v1.0.0
+
+//如果需要删除
+//删除本地tag
+git tag -d  v1.0.0
+//删除远程tag
+git push origin :refs/tags/v1.0.0
+
+
+
+```
+
+3. 其他可打包工具
+
+| 工具                   | 功能                       |
+| -------------------- | ------------------------ |
+| **Squirrel.Windows** | 自动更新、创建安装程序、桌面快捷方式       |
+| **Inno Setup**       | 脚本式安装包生成，生成 `.exe` 安装器   |
+| **WiX Toolset**      | 生成 `.msi` 安装包，适用于企业级安装程序 |
+| `nsis`               | 创建轻量级 `.exe` 安装包         |
+
 
 ## 常见问题
 
