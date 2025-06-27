@@ -60,3 +60,9 @@ https://fonts.google.com/icons
 ## ScreenToGif（Gif录制工具）
 
 官网地址：https://github.com/NickeManarin/ScreenToGif
+
+## nvm-windows（Node版本管理工具）
+
+https://github.com/coreybutler/nvm-windows
+
+## convertio （转换工具）
