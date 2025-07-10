@@ -290,13 +290,156 @@ git push origin :refs/tags/v1.0.0
 
 3. 其他可打包工具
 
-| 工具                   | 功能                       |
-| -------------------- | ------------------------ |
-| **Squirrel.Windows** | 自动更新、创建安装程序、桌面快捷方式       |
-| **Inno Setup**       | 脚本式安装包生成，生成 `.exe` 安装器   |
+| 工具                 | 功能                                     |
+| -------------------- | ---------------------------------------- |
+| **Squirrel.Windows** | 自动更新、创建安装程序、桌面快捷方式     |
+| **Inno Setup**       | 脚本式安装包生成，生成 `.exe` 安装器     |
 | **WiX Toolset**      | 生成 `.msi` 安装包，适用于企业级安装程序 |
-| `nsis`               | 创建轻量级 `.exe` 安装包         |
+| `nsis`               | 创建轻量级 `.exe` 安装包                 |
 
+
+## GitHub Pages部署Vue项目
+
+你可以通过 **GitHub Pages** 将 Vue 项目打包后的静态页面部署到 GitHub 上。以下是完整步骤（以 Vue 3 + Vite 项目为例，也适用于 Vue CLI 项目，稍有不同我会指出）：
+
+---
+
+### ✅ 步骤一：项目打包配置
+
+#### 如果你使用的是 **Vite**
+
+1. 修改 `vite.config.js` 添加 `base` 路径（假设你的仓库名是 `my-vue-app`）：
+
+```js
+// vite.config.js
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+export default defineConfig({
+  base: '/my-vue-app/', // 这里要换成你的 GitHub 仓库名
+  plugins: [vue()],
+})
+```
+
+2. 执行打包命令：
+
+```bash
+npm run build
+```
+
+会生成一个 `dist` 文件夹。
+
+---
+
+#### 如果你使用的是 **Vue CLI**
+
+1. 修改 `vue.config.js` 文件：
+
+```js
+// vue.config.js
+module.exports = {
+  publicPath: '/my-vue-app/', // 替换为你的 GitHub 仓库名
+}
+```
+
+2. 然后执行：
+
+```bash
+npm run build
+```
+
+---
+
+### ✅ 步骤二：部署到 GitHub Pages
+
+你可以通过几种方式部署，这里介绍最常见的两种：
+
+---
+
+#### 方法一：手动部署（最简单）
+
+1. 把打包后的 `dist/` 文件夹中的内容复制到一个新的分支，比如 `gh-pages`。
+2. 创建并切换分支：
+
+```bash
+git checkout --orphan gh-pages
+```
+
+3. 清空所有文件，只保留 `dist` 中的内容：
+
+```bash
+git rm -rf .
+cp -r dist/* ./
+```
+
+4. 添加、提交、推送：
+
+```bash
+git add .
+git commit -m "deploy"
+git push origin gh-pages --force
+```
+
+5. 然后去 GitHub 项目的 **Settings → Pages**：
+
+* Source 选择 `gh-pages` 分支。
+* 路径选择 `/(root)` 或 `/docs`（按你的结构）。
+
+访问地址通常是：
+
+```
+https://用户名.github.io/仓库名/
+```
+
+---
+
+#### 方法二：使用 `gh-pages` 脚本自动部署（推荐）
+
+1. 安装 `gh-pages`：
+
+```bash
+npm install gh-pages --save-dev
+```
+
+2. 在 `package.json` 添加部署脚本：
+
+```json
+{
+  "scripts": {
+    "build": "vite build",
+    "deploy": "gh-pages -d dist"
+  }
+}
+```
+
+如果你是用 Vue CLI：
+
+```json
+{
+  "scripts": {
+    "build": "vue-cli-service build",
+    "deploy": "gh-pages -d dist"
+  }
+}
+```
+
+3. 部署：
+
+```bash
+npm run build
+npm run deploy
+```
+
+4. 同样前往 GitHub 设置 `Pages`，选择 `gh-pages` 分支。
+
+---
+
+### ✅ 注意事项
+
+* `base` 路径必须写对，否则资源引用路径会错误。
+* 项目必须是 **公开仓库** 才能免费使用 GitHub Pages。
+* 若使用自定义域名，可在根目录放一个 `CNAME` 文件。
+* 若部署失败，可查看 Actions 或 Pages 的日志信息。
 
 ## 常见问题
 
