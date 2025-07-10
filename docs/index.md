@@ -12,9 +12,11 @@ hero:
   text: ""
   # image:
   #   src: /logo.png
-  
+
   actions:
-  
+    - theme: brand
+      text: vue-demo
+      link: https://chenrui1996.github.io/vue-demo/
     - theme: alt
       text: Deepseek使用
       link: /tools/deepseek/deepseek
