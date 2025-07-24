@@ -40,10 +40,10 @@ export default withMermaid({
         items: [
           { text: 'C#基础', link: '/c-sharp/basic/0.概述' },
           { text: 'Web后端', link: '/c-sharp/web/0.引言' },
-          { text: 'WPF', link: '' },
-          { text: 'Winform', link: '' },
-          { text: 'MAUI', link: '' },
-          { text: '常见应用', link: '' },
+          { text: 'WPF', link: '/c-sharp/WPF' },
+          { text: 'Winform', link: '/c-sharp/Winform' },
+          { text: 'MAUI', link: '/c-sharp/MAUI' },
+          { text: '面试题', link: '/c-sharp/面试题' },
         ]
       },
       {
@@ -165,135 +165,230 @@ export default withMermaid({
     sidebar: {
       "/c-sharp/basic/": [
         {
-          base: "/c-sharp/basic/",
-          text: 'C#基础',
-          // collapsed: false,
+          text: 'C#',
           items: [
             {
-              text: '概述',
-              link: '/0.概述/',
+              base: "/c-sharp/basic/",
+              text: 'C#基础',
+              // collapsed: false,
+
+              items: [
+                {
+                  text: '概述',
+                  link: '/0.概述/',
+                },
+                {
+                  text: '特性',
+                  link: '/1.特性/',
+                },
+                // { text: '结构', link: '/c-sharp/basic/2.结构/' },
+                {
+                  text: '类型系统',
+                  link: '/3.类型系统/'
+                },
+                {
+                  text: '泛型',
+                  link: '/4.泛型/'
+                },
+                {
+                  text: '集合',
+                  link: '/5.集合/'
+                },
+                {
+                  text: '运算符与表达式',
+                  link: '/6.运算符与表达式/'
+                },
+                {
+                  text: '语句',
+                  link: '/7.语句/'
+                },
+                {
+                  text: '方法',
+                  link: '/8.方法/'
+                },
+                {
+                  text: '委托与事件',
+                  link: '/9.委托与事件/'
+                },
+                {
+                  text: '类与接口',
+                  link: '/10.类与接口/'
+                },
+                {
+                  text: '面向对象',
+                  link: '/11.面向对象/'
+                },
+                {
+                  text: '语言集成查询 (LINQ)',
+                  link: '/12.LINQ/'
+                },
+                {
+                  text: '异步编程与多线程',
+                  link: '/13.异步编程与多线程/'
+                },
+              ]
             },
             {
-              text: '特性',
-              link: '/1.特性/',
-            },
-            // { text: '结构', link: '/c-sharp/basic/2.结构/' },
-            {
-              text: '类型系统',
-              link: '/3.类型系统/'
+              base: "/c-sharp/",
+              text: 'Web后端',
+              link: '/web/0.引言/'
             },
             {
-              text: '泛型',
-              link: '/4.泛型/'
+              base: "/c-sharp/",
+              text: 'WPF',
+              link: '/WPF/'
             },
             {
-              text: '集合',
-              link: '/5.集合/'
+              base: "/c-sharp/",
+              text: 'Winform',
+              link: '/Winform/'
             },
             {
-              text: '运算符与表达式',
-              link: '/6.运算符与表达式/'
+              base: "/c-sharp/",
+              text: 'MAUI',
+              link: '/MAUI/'
             },
             {
-              text: '语句',
-              link: '/7.语句/'
-            },
-            {
-              text: '方法',
-              link: '/8.方法/'
-            },
-            {
-              text: '委托与事件',
-              link: '/9.委托与事件/'
-            },
-            {
-              text: '类与接口',
-              link: '/10.类与接口/'
-            },
-            {
-              text: '面向对象',
-              link: '/11.面向对象/'
-            },
-            {
-              text: '语言集成查询 (LINQ)',
-              link: '/12.LINQ/'
-            },
-            {
-              text: '异步编程与多线程',
-              link: '/13.异步编程与多线程/'
+              base: "/c-sharp/",
+              text: '面试题',
+              link: '/面试题/'
             },
           ]
         }
+
       ],
       "/c-sharp/web/": [
         {
-          base: "/c-sharp/web/",
-          text: 'Web后端',
+          text: 'C#',
+          items: [
+            {
+              base: "/c-sharp/",
+              text: 'C#基础',
+              link: '/basic/0.概述/'
+            },
+            {
+              base: "/c-sharp/web/",
+              // collapsed: false,
+              text: 'Web后端',
+              items: [
+                {
+                  text: '引言',
+                  link: '/0.引言/',
+                },
+                {
+                  text: '代码结构与基本功能',
+                  link: '/1.代码结构与基本功能/',
+                },
+                {
+                  text: '主机(Host)',
+                  link: '/2.主机/',
+                },
+                {
+                  text: '依赖注入(Dependency injection)',
+                  link: '/3.依赖注入/',
+                },
+                {
+                  text: '中间件(Middleware)',
+                  link: '/4.中间件与管道/',
+                },
+                {
+                  text: '路由和控制器(Routing)',
+                  link: '/5.路由和控制器/',
+                },
+                {
+                  text: '其他基本功能',
+                  link: '/6.其他基本功能/',
+                },
+                {
+                  text: 'EF Core',
+                  link: '/7.EF Core/',
+                },
+                {
+                  text: '视图与UI',
+                  link: '/8.视图与UI/',
+                },
+                {
+                  text: '认证与授权',
+                  link: '/9.认证与授权/',
+                },
+                {
+                  text: '部署与发布',
+                  link: '/10.部署与发布/',
+                },
+                {
+                  text: '其他实践',
+                  base: "/c-sharp/web/其他实践/",
+                  items: [
+                    {
+                      text: '使用SignalR实现实时通信',
+                      link: '/1.使用SignalR实现实时通信/',
+                    },
+                    {
+                      text: '使用个gRPC实现高可用服务',
+                      link: '/2.使用个gRPC实现高可用服务/',
+                    },
+                    {
+                      text: '使用Redis',
+                    },
+                    {
+                      text: '使用Quarze',
+                    },
+                  ]
+                },
+              ]
+            }
+          ]
+        },
+        {
+          base: "/c-sharp/",
+          text: 'WPF',
+          link: '/WPF/'
+        },
+        {
+          base: "/c-sharp/",
+          text: 'Winform',
+          link: '/Winform/'
+        },
+        {
+          base: "/c-sharp/",
+          text: 'MAUI',
+          link: '/MAUI/'
+        },
+        {
+          base: "/c-sharp/",
+          text: '面试题',
+          link: '/面试题/'
+        },
+      ],
+      "/c-sharp/": [
+        {
+          base: "/c-sharp/",
+          text: 'C#',
           // collapsed: false,
           items: [
             {
-              text: '引言',
-              link: '/0.引言/',
+              text: 'C#基础',
+              link: '/basic/0.概述/'
             },
             {
-              text: '代码结构与基本功能',
-              link: '/1.代码结构与基本功能/',
+              text: 'Web后端',
+              link: '/web/0.引言/'
             },
             {
-              text: '主机(Host)',
-              link: '/2.主机/',
+              text: 'WPF',
+              link: '/WPF/'
             },
             {
-              text: '依赖注入(Dependency injection)',
-              link: '/3.依赖注入/',
+              text: 'Winform',
+              link: '/Winform/'
             },
             {
-              text: '中间件(Middleware)',
-              link: '/4.中间件与管道/',
+              text: 'MAUI',
+              link: '/MAUI/'
             },
             {
-              text: '路由和控制器(Routing)',
-              link: '/5.路由和控制器/',
-            },
-            {
-              text: '其他基本功能',
-              link: '/6.其他基本功能/',
-            },
-            {
-              text: 'EF Core',
-              link: '/7.EF Core/',
-            },
-            {
-              text: '视图与UI',
-              link: '/8.视图与UI/',
-            },
-            {
-              text: '认证与授权',
-              link: '/9.认证与授权/',
-            },
-            {
-              text: '部署与发布',
-              link: '/10.部署与发布/',
-            },
-            {
-              text: '其他实践',
-              base: "/c-sharp/web/其他实践/",
-              items: [
-                {
-                  text: '使用SignalR实现实时通信',
-                  link: '/1.使用SignalR实现实时通信/',
-                },
-                {
-                  text: '使用个gRPC实现高可用服务',
-                  link: '/2.使用个gRPC实现高可用服务/',
-                },
-                {
-                  text: '使用Redis',
-                },
-                {
-                  text: '使用Quarze',
-                },
-              ]
+              text: '面试题',
+              link: '/面试题/'
             },
           ]
         }
