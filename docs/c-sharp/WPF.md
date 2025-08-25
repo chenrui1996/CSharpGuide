@@ -5479,4 +5479,600 @@ namespace WpfDemo.ViewModels.PageViewModels
 
 ## 数据处理(data)
 
+### 系统配置文件
 
+#### App.config
+
+::: danger
+
+- 修改的是 运行目录下的 exe.config，不建议频繁写入；
+- 若需要存储用户个性化配置，推荐 Properties.Settings 或 JSON 文件。
+
+:::
+
+
+示例：
+
+``` csharp
+//读
+AppConfigRead = ConfigurationManager.AppSettings["AppSettingTest"];
+//写
+ConfigurationManager.AppSettings["AppSettingTest"] = AppConfigWrite;
+```
+
+
+#### Settings.settings
+
+> 在项目 → 属性 → Settings.settings 中可以定义配置项。
+
+::: tip 
+
+这种方式自动存储在：
+`C:\Users\<用户名>\AppData\Local\<公司名>\<应用名>_<随机串>\<版本>\user.config`
+
+:::
+
+示例：
+
+``` csharp
+//读
+SettingConfigRead = Properties.Settings.Default.SettingTest;
+//写
+Properties.Settings.Default.SettingTest = SettingConfigWrite;
+Properties.Settings.Default.Save();
+```
+
+### 文件存储
+
+示例:
+
+``` csharp
+public class AppConfig
+{
+    public string AppConfigItem1 { get; set; } = "AppConfigItem1";
+    public string AppConfigItem2 { get; set; } = "AppConfigItem2";
+}
+
+public static class ConfigHelper
+{
+    //漫游用户路径
+    private readonly static string configPath = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+        "WPFDemo",
+        "config.json"
+    )
+
+    public static AppConfig LoadConfig()
+    {
+        if (!File.Exists(configPath))
+            return new AppConfig();
+
+        var json = File.ReadAllText(configPath);
+        return JsonSerializer.Deserialize<AppConfig>(json) ?? new AppConfig();
+    }
+
+    //对于 典型 WPF 配置文件（几 KB），当前实现不会有性能问题
+    public static void SaveConfig(AppConfig? config)
+    {
+        if (config == null)
+        {
+            return;
+        }
+        Directory.CreateDirectory(Path.GetDirectoryName(configPath)!);
+        var json = JsonSerializer.Serialize(
+            config,
+            new JsonSerializerOptions { WriteIndented = true }
+        );
+        File.WriteAllText(configPath, json);
+    }
+}
+```
+
+### 数据库存储
+
+#### 嵌入式数据库
+
+> 嵌入式数据库 以 `SQL Lite` 为例， 一般作为本地数据库，开发时不需要单独安装。
+
+示例：
+
+``` csharp
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.Data.Sqlite;
+using SQLitePCL;
+using WpfDemo.ViewModels.PageViewModels;
+using static WpfDemo.Attributes.CustomDataGridAttributes;
+
+namespace WpfDemo.SqlLite
+{
+    public class SqliteHelper
+    {
+        private static readonly Lazy<SqliteHelper> _instance = new(() => new SqliteHelper());
+
+        private readonly string _connectionString;
+
+        private static readonly string _dbPath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "WPFDemo",
+            "mydb.sqlite"
+        );
+
+        //private static readonly string _dbPath = "mydb.sqlite";
+
+        private SqliteHelper()
+        {
+            _connectionString = $"Data Source={_dbPath};Cache=Shared;";
+            Batteries.Init();
+            // 如果数据库文件不存在，可以在这里自动创建表
+            InitTable();
+        }
+
+        /// <summary>
+        /// 单例懒加载，切记connection不能复用，会出现脏读脏写
+        /// </summary>
+        public static SqliteHelper Instance => _instance.Value;
+
+        /// <summary>
+        /// 初始化应用程序的数据库白哦
+        /// </summary>
+        private void InitTable()
+        {
+            ExecuteNonQuery(
+                @"CREATE TABLE IF NOT EXISTS Users (
+                            Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            Name TEXT NOT NULL,
+                            Gender INTEGER NOT NULL,
+                            Age INTEGER)"
+            );
+        }
+
+        /// <summary>
+        /// 执行非查询 SQL (增删改)
+        /// 事务避免脏写
+        /// </summary>
+        public int ExecuteNonQuery(string sql, params SqliteParameter[] parameters)
+        {
+            using var conn = new SqliteConnection(_connectionString);
+            conn.Open();
+
+            using var tran = conn.BeginTransaction();
+            try
+            {
+                using var cmd = new SqliteCommand(sql, conn, tran);
+                if (parameters != null)
+                    cmd.Parameters.AddRange(parameters);
+                return cmd.ExecuteNonQuery();
+            }
+            catch
+            {
+                tran.Rollback();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 执行查询 SQL，返回 DataTable
+        /// </summary>
+        public DataTable ExecuteQuery(string sql, params SqliteParameter[] parameters)
+        {
+            var dt = new DataTable();
+
+            using var conn = new SqliteConnection(_connectionString);
+            conn.Open();
+
+            using var cmd = new SqliteCommand(sql, conn);
+            if (parameters != null)
+                cmd.Parameters.AddRange(parameters);
+
+            using var reader = cmd.ExecuteReader();
+            dt.Load(reader);
+            return dt;
+        }
+
+        /// <summary>
+        /// 执行查询 SQL，返回单个值
+        /// </summary>
+        public object ExecuteScalar(string sql, params SqliteParameter[] parameters)
+        {
+            using var conn = new SqliteConnection(_connectionString);
+            conn.Open();
+            using var cmd = new SqliteCommand(sql, conn);
+            if (parameters != null)
+                cmd.Parameters.AddRange(parameters);
+            return cmd.ExecuteScalar()!;
+        }
+    }
+
+    public static class DataTableExtensions
+    {
+        public static List<T> ToEntityList<T>(this DataTable table)
+            where T : new()
+        {
+            var properties = typeof(T).GetProperties();
+            var list = new List<T>();
+
+            foreach (DataRow row in table.Rows)
+            {
+                var entity = new T();
+
+                foreach (var prop in properties)
+                {
+                    if (table.Columns.Contains(prop.Name) && row[prop.Name] != DBNull.Value)
+                    {
+                        var attr = prop.GetCustomAttribute<GridColumnAttribute>();
+                        if (attr?.Type != null)
+                        {
+                            prop.SetValue(entity, Enum.ToObject(attr.Type, row[prop.Name]));
+                            continue;
+                        }
+                        prop.SetValue(
+                            entity,
+                            Convert.ChangeType(row[prop.Name], prop.PropertyType)
+                        );
+                    }
+                }
+
+                list.Add(entity);
+            }
+
+            return list;
+        }
+    }
+
+    public static class CollectionExtensions
+    {
+        public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> source)
+        {
+            return new ObservableCollection<T>(source);
+        }
+    }
+}
+
+```
+
+使用：
+
+ViewMdoel
+
+``` csharp
+using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.VisualBasic.ApplicationServices;
+using WpfDemo.Services;
+using WpfDemo.SqlLite;
+
+namespace WpfDemo.ViewModels.PageViewModels
+{
+    public partial class DatabaseStorageViewModel : ViewModelBase
+    {
+        private readonly DatabaseStorageService _service;
+
+        public DatabaseStorageViewModel(DatabaseStorageService service)
+        {
+            _service = service;
+            Refresh();
+        }
+
+        [ObservableProperty]
+        private ObservableCollection<UserModel> userModels = [];
+
+        [RelayCommand]
+        private void Refresh()
+        {
+            UserModels =
+                SqliteHelper
+                    .Instance.ExecuteQuery("SELECT * FROM Users;")
+                    .ToEntityList<UserModel>()
+                    .Select(user =>
+                    {
+                        user.PropertyChanged += User_PropertyChanged;
+                        return user;
+                    })
+                    .ToObservableCollection() ?? [];
+        }
+
+        private void User_PropertyChanged(
+            object? sender,
+            System.ComponentModel.PropertyChangedEventArgs e
+        )
+        {
+            if (sender is UserModel user)
+            {
+                SqliteHelper.Instance.ExecuteQuery(
+                    $"UPDATE Users SET Name = '{user.Name}', Age = {user.Age}, Gender = {(int)user.Gender} WHERE ID = {user.Id}"
+                );
+            }
+        }
+
+        [ObservableProperty]
+        private ObservableCollection<UserModel> selectedUsers = [];
+
+        [ObservableProperty]
+        private UserModel createdModel = new();
+
+        [RelayCommand]
+        private void AddUserEntity(UserModel createdModel)
+        {
+            SqliteHelper.Instance.ExecuteQuery(
+                $"INSERT INTO Users (Name, Age, Gender) VALUES (' {createdModel.Name}', {createdModel.Age}, '{(int)createdModel.Gender}');"
+            );
+            Refresh();
+        }
+
+        [RelayCommand]
+        private async Task AddUser()
+        {
+            await GlobalNotifier.ShowForm(CreatedModel, AddUserEntityCommand);
+        }
+
+        [RelayCommand]
+        private void DeleteUsers()
+        {
+            if (SelectedUsers.Count > 0)
+            {
+                SqliteHelper.Instance.ExecuteQuery(
+                    string.Join(
+                        "",
+                        SelectedUsers.Select(s => $"DELETE FROM Users WHERE Id = {s.Id};")
+                    )
+                );
+                Refresh();
+            }
+        }
+    }
+}
+
+```
+
+View
+
+``` xml
+<UserControl
+    x:Class="WpfDemo.Views.Pages.DatabaseStorage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customcontrol="clr-namespace:WpfDemo.CustomControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WpfDemo.Views.Pages"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodels="clr-namespace:WpfDemo.ViewModels.PageViewModels"
+    d:DataContext="{d:DesignInstance Type=viewmodels:DatabaseStorageViewModel}"
+    mc:Ignorable="d">
+    <Grid>
+        <StackPanel VerticalAlignment="Top" Orientation="Vertical">
+
+            <GroupBox
+                Margin="0,10"
+                materialDesign:ColorZoneAssist.Background="{DynamicResource MaterialDesign.Brush.Primary.Dark}"
+                materialDesign:ColorZoneAssist.Foreground="{DynamicResource MaterialDesign.Brush.Primary.Dark.Foreground}"
+                materialDesign:ColorZoneAssist.Mode="Custom"
+                FontSize="18"
+                Header="Sqlite"
+                Style="{StaticResource MaterialDesignGroupBox}">
+                <StackPanel
+                    Width="800"
+                    VerticalAlignment="Top"
+                    Orientation="Vertical">
+                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                        <Button
+                            Margin="10"
+                            Command="{Binding AddUserCommand}"
+                            Content="新增"
+                            Style="{StaticResource MaterialDesignFlatDarkBgButton}" />
+                        <Button
+                            Margin="10"
+                            Background="DarkRed"
+                            Command="{Binding DeleteUsersCommand}"
+                            Content="删除"
+                            Style="{StaticResource MaterialDesignFlatDarkBgButton}" />
+                        <Button
+                            Margin="10"
+                            Background="DarkSeaGreen"
+                            BorderBrush="DarkGreen"
+                            Command="{Binding RefreshCommand}"
+                            Content="刷新"
+                            Style="{StaticResource MaterialDesignFlatDarkBgButton}" />
+                    </StackPanel>
+
+                    <customcontrol:CustomDataGrid SelectedItems="{Binding SelectedUsers, Mode=TwoWay}" SourceItems="{Binding UserModels, Mode=TwoWay}" />
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</UserControl>
+
+```
+
+![](pictures/sqlite.gif)
+
+#### Mysql/Sqlserver
+
+::: warning 注意
+1. 一般情况下，WPF应用不会访问本地数据库。
+2. 即使需要访问非嵌入式数据库，一般也需要配置远程数据源，参考 **Web后端-EF Core**
+3. 处理复杂数据最常见的方式是使用Http请求远程访问服务端数据。
+:::
+
+### 应用数据存储(ApplicationData)
+
+在 WPF 桌面应用里，ApplicationData 通常指 Windows 提供的应用数据存储目录（用户级或系统级），主要用来存储 配置文件、缓存、用户数据。这样做的好处是：
+   - 路径规范，符合 Windows 用户习惯；
+   - 不需要管理员权限；
+   - 不同用户隔离，互不影响。
+
+在 .NET 中可以通过 Environment.GetFolderPath 获取：
+
+``` csharp
+// 当前用户的应用数据（Roaming，可随用户漫游到域内其他电脑）
+string roamingPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+// 当前用户的本地应用数据（Local，仅保存在本机）
+string localPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+// 所有用户共享的应用数据
+string commonPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+
+```
+
+路径示例:
+
+- Roaming：C:\Users\<用户名>\AppData\Roaming
+- Local：C:\Users\<用户名>\AppData\Local
+- Common：C:\ProgramData
+
+### Http请求
+
+示例：
+
+``` csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
+namespace WpfDemo.Services
+{
+    public static class HttpHelper
+    {
+        /// <summary>
+        /// 单例 HttpClient（推荐做法，避免频繁创建）
+        ///
+        /// 为什么 HttpClient 可以全局复用？
+        /// 1. 线程安全
+        ///     HttpClient 的 方法（GetAsync、PostAsync 等）是线程安全的。
+        ///     内部用了连接池（SocketsHttpHandler），多个线程同时调用是没问题的。
+        /// 2. 避免 Socket 耗尽
+        ///     如果每次请求都用 new HttpClient()，请求完成后就释放，会导致端口（TIME_WAIT）堆积，尤其是高并发时。
+        ///     单例/长生命周期的 HttpClient 会自动复用 TCP 连接，性能更好。
+        /// </summary>
+        private static readonly HttpClient _httpClient = new()
+        {
+            Timeout = TimeSpan.FromSeconds(30), // 默认超时 30s
+        };
+
+        #region GET
+        public static async Task<(bool isSuccess, T? result, string? error)> GetAsync<T>(
+            string url,
+            string? token = null
+        )
+        {
+            try
+            {
+                var request = new HttpRequestMessage(HttpMethod.Get, url);
+                if (!string.IsNullOrWhiteSpace(token))
+                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+
+                var json = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<T>(json);
+                return (true, result, null);
+            }
+            catch (Exception ex)
+            {
+                return (false, default, ex.Message);
+            }
+        }
+        #endregion
+
+        #region POST
+        public static async Task<(bool isSuccess, T? result, string? error)> PostAsync<T>(
+            string url,
+            object data,
+            string? token = null
+        )
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(data);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var request = new HttpRequestMessage(HttpMethod.Post, url) { Content = content };
+                if (!string.IsNullOrWhiteSpace(token))
+                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+
+                var resultJson = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<T>(resultJson);
+                return (true, result, null);
+            }
+            catch (Exception ex)
+            {
+                return (false, default, ex.Message);
+            }
+        }
+        #endregion
+
+        #region PUT
+        public static async Task<(bool isSuccess, T? result, string? error)> PutAsync<T>(
+            string url,
+            object data,
+            string? token = null
+        )
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(data);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var request = new HttpRequestMessage(HttpMethod.Put, url) { Content = content };
+                if (!string.IsNullOrWhiteSpace(token))
+                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+
+                var resultJson = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<T>(resultJson);
+                return (true, result, null);
+            }
+            catch (Exception ex)
+            {
+                return (false, default, ex.Message);
+            }
+        }
+        #endregion
+
+        #region DELETE
+        public static async Task<(bool isSuccess, string? error)> DeleteAsync(
+            string url,
+            string? token = null
+        )
+        {
+            try
+            {
+                var request = new HttpRequestMessage(HttpMethod.Delete, url);
+                if (!string.IsNullOrWhiteSpace(token))
+                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+                var response = await _httpClient.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+                return (true, null);
+            }
+            catch (Exception ex)
+            {
+                return (false, ex.Message);
+            }
+        }
+        #endregion
+    }
+}
+
+```
