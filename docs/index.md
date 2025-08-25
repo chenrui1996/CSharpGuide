@@ -47,6 +47,16 @@ features:
     details: HTML、CSS、JS、Vue及打包部署等。
     link: /frontend/1.前端知识结构
     linkText: 更多
+
+  - title: WPF
+    details: UI、交互、MVVM等。
+    link: /c-sharp/WPF
+    linkText: 更多
+
+  - title: MAUI
+    details: UI、交互、MVVM等。
+    link: /c-sharp/MAUI
+    linkText: 更多
 ---
 
 <style>
@@ -72,14 +82,20 @@ const changeGridClass = () => {
 
         if (itemElements.length >= 4) {
             for (let i = 0; i < 3; i++) {
-                if (itemElements[i].classList.contains("grid-4")) {
-                    itemElements[i].classList.replace("grid-4", "grid-3");
+                if (itemElements[i].classList.contains("grid-6")) {
+                    itemElements[i].classList.replace("grid-6", "grid-3");
                 }
             }
 
             for (let i = 3; i < 4; i++) {
-                if (itemElements[i].classList.contains("grid-4")) {
-                    itemElements[i].classList.replace("grid-4", "grid-1");
+                if (itemElements[i].classList.contains("grid-6")) {
+                    itemElements[i].classList.replace("grid-6", "grid-1");
+                }
+            }
+
+            for (let i = 4; i < 6; i++) {
+                if (itemElements[i].classList.contains("grid-6")) {
+                    itemElements[i].classList.replace("grid-6", "grid-2");
                 }
             }
         }

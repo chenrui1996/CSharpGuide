@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--SvgWriter version 0.0.0.0-->
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1988.5195" height="317.8203" id="svg2" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(74.48143768310547,817.8202896118164)">
+    <!--Edges-->
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1070.7334 -738.0989 L 1442.1816 -692.8991" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1441.9138 -690.6984 1452.1084 -691.6912 1442.4494 -695.0998" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1048 -728.5469 L 1048 -708.5469" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1045.7831 -708.5469 1048 -698.5469 1050.2169 -708.5469" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 687 -673.9101 L 687 -653.9101" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="684.7831 -653.9101 687 -643.9101 689.2169 -653.9101" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 664.064 -673.9101 L 661.1107 -672.324 C643.8512 -663.0543 629.8583 -658.0163 619.1322 -657.21 C609.5938 -656.4929 591.7697 -652.8776 565.6599 -646.364" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="565.1159 -648.5132 555.9656 -643.9101 566.2039 -644.2149" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 669.1544 -673.9101 L 661.3589 -668.5291 C644.2648 -656.7295 598.7588 -652.5931 524.841 -656.1199 C455.8272 -659.4128 410.9001 -656.8362 390.0599 -648.3903" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="389.0666 -650.3723 381.1196 -643.9101 391.0531 -646.4083" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1117.6719 -680.5594 L 1179.8229 -675.5022 C1267.0389 -668.4055 1321.7052 -659.3831 1343.8219 -648.435" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1342.8188 -646.4579 1352.7397 -643.9101 1344.8251 -650.412" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1094.0138 -673.9101 L 1106.3621 -670.6044 C1139.4207 -661.7542 1167.2516 -653.8498 1189.8547 -646.8911" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1189.1938 -644.7749 1199.4001 -643.9101 1190.5156 -649.0072" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1048 -673.9101 L 1048 -653.9101" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1045.7831 -653.9101 1048 -643.9101 1050.2169 -653.9101" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1003.5845 -673.9101 L 905.0517 -646.5827" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="904.4593 -648.719 895.4155 -643.9101 905.6442 -644.4464" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 441.3398 -791.0103 L 1015.3006 -743.5681" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1015.118 -741.3587 1025.2666 -742.7443 1015.4832 -745.7775" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 441.3398 -790.94 L 509.9198 -785.1826 C590.3669 -778.429 640.0258 -769.5295 658.8967 -758.4841" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="657.7216 -756.6042 667.3763 -753.1836 660.0718 -760.364" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 418.3388 -783.1836 L 485.3543 -756.8418" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="484.5433 -754.7785 494.6612 -753.1836 486.1653 -758.9051" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 387 -783.1836 L 387 -763.1836" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="384.7831 -763.1836 387 -753.1836 389.2169 -763.1836" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 369.4142 -783.1836 L 334.7763 -758.9208" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="333.5044 -760.7366 326.5858 -753.1836 336.0482 -757.105" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 332.7964 -785.2898 L 128.9502 -746.8847" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="128.5397 -749.0633 119.123 -745.0333 129.3606 -744.7061" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1517.9677 -673.9101 L 1560.4101 -648.9756" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1559.2872 -647.0641 1569.0323 -643.9101 1561.5331 -650.8871" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1497 -673.9101 L 1497 -653.9101" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1494.7831 -653.9101 1497 -643.9101 1499.2169 -653.9101" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1529.322 -564.6367 L 1536.6299 -559.1214 C1552.3831 -547.2323 1591.6394 -543.0959 1654.3988 -546.7122 C1715.3244 -550.2229 1759.3155 -547.3459 1786.372 -538.0814" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1785.6083 -536.0001 1795.76 -534.6367 1787.1357 -540.1626" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1534.1421 -564.6367 L 1536.8823 -563.0401 C1552.8039 -553.7635 1569.1997 -549.42 1586.0699 -550.0096 C1601.8192 -550.5601 1620.1852 -546.7028 1641.1679 -538.4378" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1640.3252 -536.3872 1650.4173 -534.6367 1642.0106 -540.4883" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1513 -564.6367 L 1513 -544.6367" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1510.7831 -544.6367 1513 -534.6367 1515.2169 -544.6367" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1470.5211 -566.4055 L 1352.3062 -537.047" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1351.7719 -539.1986 1342.6011 -534.6367 1352.8406 -534.8954" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 721.9462 -728.5469 L 797.6226 -701.8713" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="796.8856 -699.7805 807.0538 -698.5469 798.3596 -703.9622" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 687 -728.5469 L 687 -708.5469" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="684.7831 -708.5469 687 -698.5469 689.2169 -708.5469" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 660.6213 -728.5469 L 605.4395 -702.778" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="604.5015 -704.7868 596.3787 -698.5469 606.3775 -700.7693" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 330.2331 -728.5469 L 331.1071 -728.0398 C345.8452 -719.4895 357.9219 -714.4286 367.3371 -712.8569 C375.2037 -711.5438 387.0605 -707.9553 402.9075 -702.0914" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="402.1217 -700.0184 412.2582 -698.5469 403.6933 -704.1644" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 305.6181 -728.5469 L 300.0293 -708.19" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="297.8915 -708.777 297.3819 -698.5469 302.1672 -707.6031" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 269.7083 -730.7361 L 257.0336 -727.4686 C227.1437 -719.7632 205.177 -711.9275 191.1335 -703.9614" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="189.9331 -705.8253 182.7263 -698.5469 192.3339 -702.0976" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 97 -728.5469 L 97 -708.5469" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="94.7831 -708.5469 97 -698.5469 99.2169 -708.5469" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 76.1285 -729.109 L 30.5825 -703.4545" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="29.4945 -705.3861 21.8696 -698.5469 31.6705 -701.5229" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1606.4585 -619.2734 L 1638.5355 -595.2655" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1637.2071 -593.4906 1646.5415 -589.2734 1639.8639 -597.0404" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1590 -619.2734 L 1590 -599.2734" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1587.7831 -599.2734 1590 -589.2734 1592.2169 -599.2734" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1572.6396 -619.2734 L 1538.5159 -595.0603" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1537.2329 -596.8683 1530.3604 -589.2734 1539.7988 -593.2523" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1573.7246 -619.2734 L 1570.3015 -616.6826 C1557.1692 -606.7432 1536.5136 -601.5438 1508.3348 -601.0844 C1480.156 -600.625 1383.7222 -596.4887 1219.0333 -588.6752 L 1014.7222 -578.982" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1014.6171 -581.1964 1004.7334 -578.5081 1014.8272 -576.7675" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 1001.0843 -564.6367 L 1062.7076 -538.5367" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="1061.843 -536.4953 1071.9157 -534.6367 1063.5722 -540.5781" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 972 -564.6367 L 972 -544.6367" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="969.7831 -544.6367 972 -534.6367 974.2169 -544.6367" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 945.3958 -564.6367 L 889.6787 -538.8384" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="888.7472 -540.8502 880.6042 -534.6367 890.6102 -536.8266" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 939.2666 -571.8623 L 883.4428 -563.1769 C828.5091 -554.6301 787.4611 -546.1519 760.2987 -537.7424" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="759.6102 -539.8498 750.7932 -534.6367 760.9873 -535.6351" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 939.2666 -575.116 L 802.4837 -567.4309 C689.4728 -561.0815 622.4728 -551.9754 601.4837 -540.1126 L 600.5009 -539.5571" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="599.4101 -541.4871 591.7951 -534.6367 601.5917 -537.6271" />
+    <!--nodes-->
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="1420.1738" y="-534.6367" width="185.6523" height="24.6367" rx="3" ry="3" />
+    <text x="1421.1738" y="-514.7728" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="1421.1738" dy="0">ItemsPanelTemplate</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="1025.2666" y="-753.1836" width="45.4668" height="24.6367" rx="3" ry="3" />
+    <text x="1026.2666" y="-733.3196" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="1026.2666" dy="0">View</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="918.1436" y="-534.6367" width="107.7129" height="24.6367" rx="3" ry="3" />
+    <text x="919.1436" y="-514.7728" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="919.1436" dy="0">DataTrigger</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="639.8721" y="-698.5469" width="94.2558" height="24.6367" rx="3" ry="3" />
+    <text x="640.8721" y="-678.6829" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="640.8721" dy="0">Command</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="800.0361" y="-534.6367" width="107.9277" height="24.6367" rx="3" ry="3" />
+    <text x="801.0361" y="-514.7728" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="801.0361" dy="0">MultiTrigger</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="744.3985" y="-698.5469" width="195.2031" height="24.6367" rx="3" ry="3" />
+    <text x="745.3985" y="-678.6829" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="745.3985" dy="0">Dependency Property</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="1176.1651" y="-534.6367" width="233.6699" height="24.6367" rx="3" ry="3" />
+    <text x="1177.1651" y="-514.7728" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="1177.1651" dy="0">HierarchicalDataTemplate</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="978.3281" y="-698.5469" width="139.3437" height="24.6367" rx="3" ry="3" />
+    <text x="979.3281" y="-678.6829" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="979.3281" dy="0">XAML.cs(交互)</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="358.7051" y="-753.1836" width="56.5898" height="24.6367" rx="3" ry="3" />
+    <text x="359.7051" y="-733.3196" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="359.7051" dy="0">Model</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="332.6602" y="-807.8203" width="108.6797" height="24.6367" rx="3" ry="3" />
+    <text x="333.6602" y="-787.9564" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="333.6602" dy="0">MyWPFApp</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="1170.3008" y="-643.9101" width="135.3984" height="24.6367" rx="3" ry="3" />
+    <text x="1171.3008" y="-624.0462" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="1171.3008" dy="0">Control Handle</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="1566.71" y="-589.2734" width="46.5801" height="24.6367" rx="3" ry="3" />
+    <text x="1567.71" y="-569.4095" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="1567.71" dy="0">Style</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="1448.2022" y="-643.9101" width="97.5957" height="24.6367" rx="3" ry="3" />
+    <text x="1449.2022" y="-624.0462" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="1449.2022" dy="0">Resources</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="1452.1084" y="-698.5469" width="89.7832" height="24.6367" rx="3" ry="3" />
+    <text x="1453.1084" y="-678.6829" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="1453.1084" dy="0">XAML(UI)</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="1470.2568" y="-589.2734" width="85.4863" height="24.6367" rx="3" ry="3" />
+    <text x="1471.2568" y="-569.4095" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="1471.2568" dy="0">Template</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="636.9717" y="-753.1836" width="100.0566" height="24.6367" rx="3" ry="3" />
+    <text x="637.9717" y="-733.3196" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="637.9717" dy="0">ViewModel</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="211.3057" y="-698.5469" width="165.3886" height="24.6367" rx="3" ry="3" />
+    <text x="212.3057" y="-678.6829" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="212.3057" dy="0">Business Services</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="1316.0244" y="-643.9101" width="121.9512" height="24.6367" rx="3" ry="3" />
+    <text x="1317.0244" y="-624.0462" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="1317.0244" dy="0">Event Handle</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="511.6953" y="-534.6367" width="116.6094" height="24.6367" rx="3" ry="3" />
+    <text x="512.6953" y="-514.7728" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="512.6953" dy="0">EventTrigger</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="269.5967" y="-753.1836" width="78.8066" height="24.6367" rx="3" ry="3" />
+    <text x="270.5967" y="-733.3196" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="270.5967" dy="0">Services</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="607.626" y="-643.9101" width="158.748" height="24.6367" rx="3" ry="3" />
+    <text x="608.626" y="-624.0462" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="608.626" dy="0">RoutedCommand</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="1616.1338" y="-534.6367" width="127.7324" height="24.6367" rx="3" ry="3" />
+    <text x="1617.1338" y="-514.7728" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="1617.1338" dy="0">DataTemplate</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="74.877" y="-753.1836" width="44.2461" height="24.6367" rx="3" ry="3" />
+    <text x="75.877" y="-733.3196" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="75.877" dy="0">Data</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="308.0938" y="-643.9101" width="99.8125" height="24.6367" rx="3" ry="3" />
+    <text x="309.0938" y="-624.0462" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="309.0938" dy="0">ICommand</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="1556.7051" y="-643.9101" width="66.5898" height="24.6367" rx="3" ry="3" />
+    <text x="1557.7051" y="-624.0462" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="1557.7051" dy="0">Control</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="-64.4814" y="-698.5469" width="128.9629" height="24.6367" rx="3" ry="3" />
+    <text x="-63.4814" y="-678.6829" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="-63.4814" dy="0">SQLite/LiteDB</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="1753.9619" y="-534.6367" width="150.0762" height="24.6367" rx="3" ry="3" />
+    <text x="1754.9619" y="-514.7728" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="1754.9619" dy="0">ControlTemplate</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="939.2666" y="-589.2734" width="65.4668" height="24.6367" rx="3" ry="3" />
+    <text x="940.2666" y="-569.4095" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="940.2666" dy="0">Trigger</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="510.5967" y="-698.5469" width="118.8066" height="24.6367" rx="3" ry="3" />
+    <text x="511.5967" y="-678.6829" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="511.5967" dy="0">Services Call</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="935.7256" y="-643.9101" width="224.5488" height="24.6367" rx="3" ry="3" />
+    <text x="936.7256" y="-624.0462" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="936.7256" dy="0">DataContext(ViewModel)</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="387.4727" y="-698.5469" width="113.0547" height="24.6367" rx="3" ry="3" />
+    <text x="388.4727" y="-678.6829" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="388.4727" dy="0">Data Handle</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="1624.207" y="-589.2734" width="77.5859" height="24.6367" rx="3" ry="3" />
+    <text x="1625.207" y="-569.4095" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="1625.207" dy="0">Property</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="129.4883" y="-698.5469" width="71.0234" height="24.6367" rx="3" ry="3" />
+    <text x="130.4883" y="-678.6829" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="130.4883" dy="0">Api Call</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="638.9131" y="-534.6367" width="150.1738" height="24.6367" rx="3" ry="3" />
+    <text x="639.9131" y="-514.7728" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="639.9131" dy="0">MultiDataTrigger</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="425.4297" y="-753.1836" width="201.1406" height="24.6367" rx="3" ry="3" />
+    <text x="426.4297" y="-733.3196" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="426.4297" dy="0">Converters(数据转换)</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="1036.5234" y="-534.6367" width="128.9531" height="24.6367" rx="3" ry="3" />
+    <text x="1037.5234" y="-514.7728" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="1037.5234" dy="0">DefaultTrigger</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="74.877" y="-698.5469" width="44.2461" height="24.6367" rx="3" ry="3" />
+    <text x="75.877" y="-678.6829" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="75.877" dy="0">Json</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="776.5723" y="-643.9101" width="148.8555" height="24.6367" rx="3" ry="3" />
+    <text x="777.5723" y="-624.0462" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="777.5723" dy="0">Lifecycle Handle</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="418.626" y="-643.9101" width="178.748" height="24.6367" rx="3" ry="3" />
+    <text x="419.626" y="-624.0462" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="419.626" dy="0">RoutedUICommand</tspan>
+    </text>
+    <!--end of nodes-->
+  </g>
+</svg>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--SvgWriter version 0.0.0.0-->
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="467.9873" height="427.0937" id="svg2" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(117.24021911621094,927.0937194824219)">
+    <!--Edges-->
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 0 -783.1836 L 0 -763.1836" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="-2.2169 -763.1836 0 -753.1836 2.2169 -763.1836" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 229 -564.6367 L 229 -544.6367" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="226.7831 -544.6367 229 -534.6367 231.2169 -544.6367" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 0 -673.9101 L 0 -653.9101" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="-2.2169 -653.9101 0 -643.9101 2.2169 -653.9101" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 0 -892.457 L 0 -872.457" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="-2.2169 -872.457 0 -862.457 2.2169 -872.457" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 0 -619.2734 L 0 -599.2734" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="-2.2169 -599.2734 0 -589.2734 2.2169 -599.2734" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 0 -564.6367 L 0 -544.6367" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="-2.2169 -544.6367 0 -534.6367 2.2169 -544.6367" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 0 -837.8203 L 0 -817.8203" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="-2.2169 -817.8203 0 -807.8203 2.2169 -817.8203" />
+    <path fill="none" stroke="#000000" stroke-opacity="1" stroke-width="1" d="M 0 -728.5469 L 0 -708.5469" />
+    <polygon stroke="#000000" stroke-opacity="1" stroke-width="1" fill="#000000" fill-opacity="1" points="-2.2169 -708.5469 0 -698.5469 2.2169 -708.5469" />
+    <!--nodes-->
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="-81.1562" y="-807.8203" width="162.3125" height="24.6367" rx="3" ry="3" />
+    <text x="-80.1562" y="-787.9564" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="-80.1562" dy="0">OnApplyTemplate</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="117.2529" y="-589.2734" width="223.4941" height="24.6367" rx="3" ry="3" />
+    <text x="118.2529" y="-569.4095" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="118.2529" dy="0">OnVisualParentChanged</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="-34.3691" y="-534.6367" width="68.7383" height="24.6367" rx="3" ry="3" />
+    <text x="-33.3691" y="-514.7728" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="-33.3691" dy="0">Loaded</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="-74.9795" y="-698.5469" width="149.959" height="24.6367" rx="3" ry="3" />
+    <text x="-73.9795" y="-678.6829" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="-73.9795" dy="0">ArrangeOverride</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="-45.0039" y="-917.0937" width="90.0078" height="24.6367" rx="3" ry="3" />
+    <text x="-44.0039" y="-897.2298" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="-44.0039" dy="0">构造函数</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="-47.1377" y="-643.9101" width="94.2754" height="24.6367" rx="3" ry="3" />
+    <text x="-46.1377" y="-624.0462" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="-46.1377" dy="0">OnRender</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="-107.2402" y="-589.2734" width="214.4804" height="24.6367" rx="3" ry="3" />
+    <text x="-106.2402" y="-569.4095" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="-106.2402" dy="0">OnRenderSizeChanged</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="181.8477" y="-534.6367" width="94.3047" height="24.6367" rx="3" ry="3" />
+    <text x="182.8477" y="-514.7728" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="182.8477" dy="0">UnLoaded</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="-56.2637" y="-862.457" width="112.5273" height="24.6367" rx="3" ry="3" />
+    <text x="-55.2637" y="-842.5931" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="-55.2637" dy="0">OnInitialized</tspan>
+    </text>
+    <rect fill="#add8e6" fill-opacity="1" stroke="#000000" stroke-opacity="1" stroke-width="1" x="-78.3096" y="-753.1836" width="156.6191" height="24.6367" rx="3" ry="3" />
+    <text x="-77.3096" y="-733.3196" font-family="Arial" font-size="16" fill="#000000">
+      <tspan x="-77.3096" dy="0">MeasureOverride</tspan>
+    </text>
+    <!--end of nodes-->
+  </g>
+</svg>
