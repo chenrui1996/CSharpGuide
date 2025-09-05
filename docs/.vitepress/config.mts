@@ -114,22 +114,27 @@ export default withMermaid({
         ]
       },
       {
-        text: '计算机基础',
+        text: '面试题',
         items: [
-          { text: '计算机网络', link: '' },
-          { text: '数据结构', link: '' },
-          { text: '算法', link: '' },
+          { text: 'C#', link: '/interview/cSharp' },
+          { text: '.NET Core', link: '/interview/web' },
+          { text: '数据库', link: '/interview/database' },
+          { text: 'Vue', link: '/interview/vue' },
+          { text: '部署与运维', link: '/interview/deploy' },
+          { text: 'WPF', link: '/interview/WPF' },
+          { text: '通讯', link: '/interview/communication' },
+          { text: '业务', link: '/interview/business' },
         ]
       },
-      {
-        text: '系统设计',
-        items: [
-          { text: '基础知识', link: '' },
-          { text: '认证授权', link: '' },
-          { text: '数据安全', link: '' },
-          { text: '设计模式', link: '' },
-        ]
-      },
+      // {
+      //   text: '系统设计',
+      //   items: [
+      //     { text: '基础知识', link: '' },
+      //     { text: '认证授权', link: '' },
+      //     { text: '数据安全', link: '' },
+      //     { text: '设计模式', link: '' },
+      //   ]
+      // },
       {
         text: '工具',
         items: [
@@ -468,7 +473,24 @@ export default withMermaid({
             { text: '其他', link: '/6.其他' },
           ]
         }
+      ],
+      "/interview/": [
+        {
+          base: "/interview/",
+          text: '面试题',
+          items: [
+            { text: 'C#', link: 'cSharp' },
+            { text: '.NET Core', link: 'web' },
+            { text: '数据库', link: 'database' },
+            { text: 'Vue', link: 'vue' },
+            { text: '部署与运维', link: 'deploy' },
+            { text: 'WPF', link: 'WPF' },
+            { text: '通讯', link: 'communication' },
+            { text: '业务', link: 'business' },
+          ]
+        }
       ]
+
     },
 
     docFooter: {
