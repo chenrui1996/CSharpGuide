@@ -1695,9 +1695,432 @@ string 的 字符串常量池（intern pool） 本质上就是 享元模式的�
 ## LINQ
 
 ::: tip 什么是 LINQ？它的优势是什么？
+LINQ（Language Integrated Query，语言集成查询）是 .NET 提供的一组功能，允许开发者在 C# 或 VB.NET 语言中以统一的语法 来查询和操作数据。可以用类似 SQL 的方式操作 对象、数据库、XML、集合 等数据源。
+
+LINQ 在 C# 里主要有 两种写法：
+
+1. 类似 SQL 的写法，语法更直观，适合复杂查询。
+2. 基于扩展方法和 Lambda 表达式，调用 Where(), Select(), OrderBy() 等。
+
+没有优缺点，只有个人习惯。
+
+**性能问题**
+
+- 集合的循环在小规模数据时比for基本没有差别。大数据相对for略慢
+- 数据库操作会进行优化，相对于循环较快
+
+:::
+
+::: tip LINQ 常见方法
+
+- 筛选：Where, OfType
+- 投影：Select, SelectMany
+- 排序：OrderBy, ThenBy, Reverse
+- 分组：GroupBy, ToLookup
+- 连接：Join, GroupJoin
+- 集合运算：Distinct, Union, Intersect, Except, Concat
+- 元素操作：First, Single, ElementAt
+- 聚合：Count, Sum, Average, Min, Max, Aggregate
+- 量词：Any, All, Contains
+- 生成序列：Range, Repeat, Empty
+- 转换：ToList, ToArray, ToDictionary, Cast
+
+:::
+
+::: tip `IEnumerable<T>` 和 `IQueryable<T>` 有什么区别？
+
+- `IEnumerable<T>`：可枚举的序列，在 内存中执行。
+- `IQueryable<T>`: 可以被查询的数据源，用于 远程数据源。查询会被翻译成底层的数据查询语言（SQL、OData…），然后在 远程执行。
+
+:::
+
+::: tip 哪些方法延迟执行，哪些立即执行。
+
+- 延迟执行：只保存查询定义，不执行，等到真正遍历时再计算 → 一般返回 `IEnumerable<T>` 或 `IQueryable<T>` Where, Select。
+- 立即执行：定义时立刻执行并保存结果 →  一般返回的是具体结果（集合或单个值）聚合方法 Count、Sum, 元素方法 First、Last 集合转换方法：ToList、 ToArray。
+
+:::
+
+::: tip Select 和 SelectMany 的区别是什么？
+
+- Select 投影，返回一个一对一的映射
+- SelectMany 对序列中的每个元素执行投影，并将嵌套的集合展开，变成一个“扁平集合”。。
+
+:::
+
+::: tip 如何在 LINQ 中实现分组？
+
+GroupBy 和 ToLookup都可以分组
+
+不同的是
+
+- GroupBy： 延迟执行（Deferred Execution），返回`IEnumerable<IGrouping<TKey,T>>`,后续可以Select或遍历
+- ToLookup： 立即执行（Immediate Execution），返回`ILookup<TKey,T>`，可以直接取值,一般很少使用
+
+:::
+
+::: tip 如何实现去重
+
+1. 使用 Distinct(),注意引用类型需要重写Equals 和 GetHashCode()，或者自定义` IEqualityComparer<T>`作为参数
+2. 使用 GroupBy，不想重写 Equals/GetHashCode，或者按特定字段去重
+
+:::
+
+::: tip Join、GroupJoin 和 SelectMany 的区别是什么？
+
+- Join: 内连接，只返回连接的键值匹配的元素，返回IEnumerable
+- GroupJoin：左连接，按左侧元素一对多分组，返回`IEnumerable<TResult>`
+- SelectMany：GroupJoin后拍平取分组内的元素
+
+:::
+
+::: tip LINQ性能优化实践
+
+虽然在多数情况下LINQ性能较差，但相比手写方法，无论是LINQ to Object，还是LINQ to DB 都可以清晰的表达逻辑，且可以延迟执行。
+
+如果优化得当，会比手写方法可读性高，犯错几率小。
+
+如何优化：
+
+1. 尽量在数据库端执行查询、延迟执行，需要使用时拉发哦内存
+2. 减少不必要的 LINQ 链
+3. 减少操作集合的数量后再操作，先筛选再排序，先筛选再分组，先筛选再投影
+4. Jion时注意选择键，如果太慢就用原生SQL
+5. 使用 Parallel LINQ + 线程安全集合提高性能。比如寻路算法等需要超高性能要求的时候。
+   1. 注意，数据库查询或 I/O 操作通常不适合 PLINQ，因为并行不能减少 I/O 等待。必要时可以先拉到内存处理。
+
+:::
+
+::: tip LINQ中的闭包
+
+闭包是捕获外部变量的函数，就是在函数内使用外部变量。
+
+lambda 或匿名方法可以访问定义它们的外部局部变量。实现闭包
+
+但注意，闭包有一些常见问题;
+
+``` c#
+var actions = new List<Action>();
+
+for (int i = 0; i < 3; i++)
+{
+    actions.Add(() => Console.WriteLine(i));
+}
+
+foreach (var action in actions)
+{
+    action();
+}
+
+//ambda 捕获了循环变量 i 的引用
+//循环结束时 i = 3，所有 lambda 都打印 3
+
+// 解决方法：
+for (int i = 0; i < 3; i++)
+{
+    int temp = i; // 新建局部变量
+    actions.Add(() => Console.WriteLine(temp));
+}
+```
+
+js中也有类似问题
+
+``` js
+
+for (var i = 0; i < 3; i++) {
+    setTimeout(function() {
+        console.log(i);
+    }, 100);
+}
+
+// var 是函数作用域，循环内只有一个 i
+// 闭包捕获了同一个 i，循环结束后 i = 3
+// 异步执行时打印的是最终值
+
+// 正确方法
+
+// 使用 let（块级作用域）
+for (let i = 0; i < 3; i++) {
+    setTimeout(function() {
+        console.log(i);
+    }, 100);
+}
+
+// IIFE（立即执行函数）
+// 每次循环创建新的作用域，把 i 传入参数 j
+for (var i = 0; i < 3; i++) {
+    (function(j) {
+        setTimeout(function() {
+            console.log(j);
+        }, 100);
+    })(i);
+}
+
+```
+
+:::
+
+::: tip 请谈谈你在工作中使用 LINQ 时遇到的坑或最佳实践。
+
+参考  LINQ性能优化实践
+
+:::
+
+## 并发与并行
+
+::: tip 线程（Thread）与进程（Process）区别
+
+- 进程是资源分配的最小单位，
+  - 一个进程可以包含多个线程，线程共享进程内存。
+- 线程是 CPU 调度的最小单位。
+
+:::
+
+::: tip 并发（Concurrency） 和 并行（Parallelism）区别 (Thread、Task、async/await 区别？)
+
+- 并发（Concurrency）: 多个任务在时间上交错执行，但可能只在一个 CPU 核心上轮流运行
+  - 并发更多用 async/await实现，**本质是状态机+任务调度**。
+- 并行（Parallelism）: 多个任务在同一时刻同时执行，通常依赖多核 CPU
+  - Parallel、PLINQ、、Task、Task.WhenAll 等实现多线程计算。
+  - 上述如果没有多核处理器会降级为并行
+
+:::
+
+::: tip .net 如何使用线程
+
+1. 使用 System.Threading.Thread 类, `Thread t = new Thread(DoWork);`
+   1. Thread.Start() → 启动线程
+   2. Thread.Join() → 阻塞当前线程，等待目标线程结束
+   3. Thread.Sleep(ms) → 暂停当前线程
+2. 使用线程池（ThreadPool）`ThreadPool.QueueUserWorkItem(state =>{});`
+3. 使用 Task（推荐）
+   1. Task.Run(Action) 创建并立即在线程池执行任务（推荐）
+   2. Task.Factory.StartNew(Action) 创建并启动任务（功能比 Task.Run 更强大，但需要手动指定选项）
+   3. new Task(Action) 创建任务，但不启动，需要调用 Start()
+
+**在实际应用中，多数情况下使用Task，复杂情况如设备调度、通讯线程，可以使用Quartz.NET，也可以自定义线程池。**
+
+**在集合运算中，更推荐使用 Parallel LINQ + 线程安全集合。**
+:::
+
+::: tip 线程生命周期
+
+| 状态                         | 含义                                                                            |
+| ---------------------------- | ------------------------------------------------------------------------------- |
+| `Unstarted`                  | 线程对象已创建，但尚未调用 `Start()`                                            |
+| `Running`                    | 线程正在执行（注意：`ThreadState` 没有直接标识 Running，但可用 `IsAlive` 判断） |
+| `WaitSleepJoin`              | 线程在等待、睡眠或 `Join` 阻塞状态                                              |
+| `Suspended`                  | 线程被挂起（已废弃，不推荐使用）                                                |
+| `Stopped`                    | 线程已结束                                                                      |
+| `Background`                 | 线程是后台线程（主线程退出时，后台线程会自动结束）                              |
+| `AbortRequested` / `Aborted` | 线程正在被中止（已废弃）                                                        |
 
 
 :::
 
-## 异步、多线程与并发
+::: tip Thread.Sleep(0) 作用
 
+线程重排。
+
+表示当前线程 让出 CPU 时间片，放弃当前 CPU 时间片给同优先级线程。
+
+作用：
+
+1. 避免 CPU 饥饿 / 死循环
+
+```c#
+while (!stop)
+{
+    // 做一些工作
+    Thread.Sleep(0); // 让出 CPU 避免占满
+}
+```
+
+1. 协调多线程。也可以使用Thread.Yield()，但Thread.Yield()表示暂停当前线程，立即调度其他线程。没有其他同优先级线程可运行时被唤醒。
+2. 线程优先级调度，让操作系统更公平地分配时间片。
+:::
+
+::: tip 如何调整线程优先级
+
+通过 Thread.Priority 属性进行调整
+
+但 它只是建议，操作系统会根据 CPU 调度策略决定最终执行顺序。
+
+- IsBackground 属性控制线程是否在主线程退出时自动终止
+- 高优先级线程可能导致低优先级线程饥饿，且多核CPU影响有限
+- 线程池线程（ThreadPool）无法直接调整优先级，ThreadPool 调度器管理线程优先级。
+
+因此：
+
+***实践中一般很少使用，可以自定义线程并自定义调度策略。***
+:::
+
+::: tip Task.Run和 new Task()的区别
+
+- Task.Run: 立即创建并在线程池线程上执行
+- new Task(): 创建任务时不会立即执行，必须调用Start才能执行，默认 TaskScheduler.Current（通常线程池线程）
+  - 可以自定义TaskScheduler，如`SingleThreadTaskScheduler : TaskScheduler`
+
+:::
+
+::: tip 如何取消线程
+
+1. 使用Task.Abort()
+   1. ThreadAbortException即使捕获依旧会继续冒泡，必须调用`Thread.ResetAbort();`
+2. 使用标志位
+3. 使用CancellationToken
+
+:::
+
+::: tip async void 与 async Task 区别？
+- async void —— 不可等待，异常会崩溃
+  - 除非必须（事件处理器），不要用 async void。
+  - async void 的异常会直接传到 SynchronizationContext.UnhandledException 或全局异常处理器。
+- async Task —— 可等待，异常可捕获
+
+:::
+
+::: tip 介绍线程本地存储 `ThreadLocal<T>` vs `[ThreadStatic]`
+为什么需要` ThreadLocal<T>` / `[ThreadStatic]`，而不是直接用普通的静态字段或实例字段来存储？
+
+如果不用，需要加锁（lock / Interlocked）来保证安全。性能下降，且逻辑变复杂。
+
+**使用后，每个线程一份，不会互相干扰。**
+
+它俩有啥区别？
+
+- `ThreadLocal<T>`: 
+  - 为 每个线程保存独立的 T 实例, 可以通过构造函数传入 初始化委托，
+  - 每个线程首次访问时执行
+  - 需要初始化 / 复杂对象 / 调试可见性
+- `[ThreadStatic]`: 
+  - 为 每个线程保存独立的静态字段副本, 不支持初始化（只在类加载时初始化一次），
+  - 线程副本不会自动初始化
+  - 简单值 + 高性能场景
+
+:::
+
+::: tip 线程和线程池的常见问题和最佳实践
+
+**注意事项：**
+
+- 使用Task.Run也会将线程委托给线程池管理
+- 线程池里的线程会复用，如果需要守卫线程不推荐使用，推荐使用独立线程
+- 复用线程可能之前执行过不同任务，需要注意线程上下文/局部变量清理
+- 线程池线程是后台线程，主线程退出时，线程池线程会自动结束
+- 在 WinForms/WPF 必须通过 UI 线程调度更新控件，否则报异常
+- 在线程池里未捕获的异常不会像普通线程那样崩溃主程序，而是直接吞掉
+  - 线程一定记得异常处理
+- 配合 async/await 使用，避免浪费线程资源
+- 不推荐使用Thread.Abort()中断线程，推荐使用CancellationToken或标志位结束线程
+  - ThreadAbortException即使捕获依旧会继续冒泡，必须调用`Thread.ResetAbort();`
+- 尽量避免使用`Thread.Sleep(5000);`、`Thread.Join`导致性能损耗，
+  - 使用async/await Task.Delay替代阻塞 API，如果必须同步等待，考虑开独立线程 (new Thread) 而不是占用线程池
+  - 记住：线程越早释放越好
+- 能 await 就别 Wait，能 Task 就别 void，IO 用 async，CPU 用 Task.Run”。
+
+:::
+
+::: tip 线程间如何通信
+
+1. 共享内存 + 锁（最基础）
+2. Monitor.Wait / Monitor.Pulse
+   1. 适合一个线程等待条件，另一个线程通知继续执行。
+3. AutoResetEvent / ManualResetEvent
+   1. 一个线程等待事件，另一个线程触发。
+4. 线程安全集合
+5. Semaphore / SemaphoreSlim 信号量
+   1. 控制同时访问资源的线程数量
+
+:::
+
+::: tip 什么是竞态条件？如何解决？
+
+竞态条件: 多个线程或任务在没有合适的同步机制下，同时访问或修改共享资源，最终导致程序的执行结果依赖于线程执行的时序（race），不可预测且不稳定。
+
+解决方案：
+
+1. 加锁
+2. 使用线程安全集合/数据结构
+3. 避免共享数据
+
+:::
+
+::: tip 有哪些常见的锁
+
+1. lock / Monitor
+   1. lock 是 Monitor.Enter/Exit 的语法糖
+2. Mutex
+   1. 跨进程锁，也可用于同进程
+3. Semaphore / SemaphoreSlim 信号量
+   1. 控制同时访问资源的线程数量
+4. ReaderWriterLockSlim
+   1. 读写锁，多线程可以同时读，写操作独占
+5. SpinLock
+   1. 自旋锁，线程不断轮询尝试获取锁，不阻塞线程
+
+:::
+
+::: tip volatile 和 lock 的区别？
+
+- volatile
+  - 只能禁止指令重排
+    - 编译器或 CPU 在优化时可能会重新排序指令。
+    - volatile 会生成内存屏障（memory barrier），防止读取/写入顺序被打乱。  
+    - 单次赋值原子性
+  - 它只能保证每个线程立即可见
+    - 每个线程通常运行在 不同的 CPU 核上
+    - CPU 核有 自己的缓存（L1/L2/L3），读写数据时优先从缓存中获取，而不是每次访问主内存
+    - 普通字段可能只更新本地缓存，其他线程看到的仍是旧值
+    - volatile 在读取/写入时会插入 CPU 内存屏障，写 volatile 变量 → 先刷新到主内存，读 volatile 变量 → 从主内存读取最新值
+  - 所以它不能替代锁，只适合轻量标志、开关、事件通知
+- lock
+  - 保证互斥：同一时间只有一个线程可以进入临界区
+  - 保证原子性：临界区内的操作是安全的
+  - 保证可见性：临界区结束后，内存中的修改对其他线程可见
+  - 可以保护复合操作：如 x++、集合操作等
+
+:::
+
+::: tip 什么是死锁，如何避免死锁
+
+死锁：A 等 B，B 等 A 永久阻塞。
+
+书面回答
+
+死锁的四个必要条件（操作系统理论）
+
+- 互斥：资源一次只能被一个线程占用。
+- 请求并保持：一个线程已经持有资源，但又请求新的资源。
+- 不剥夺：线程获得的资源在使用完前，不能被强制剥夺。
+- 循环等待：存在一个线程-资源的循环等待链。
+
+***如何排查检测死锁：***
+
+现象: 线程长时间阻塞
+
+1. 开发是断点调试定位位置
+2. 生产环境附加进程调试、日志等工具
+3. 数据库：SQL Server、MySQL 自带死锁检测机制，通常会抛 Deadlock detected 异常，让事务回滚。
+
+***如何在开发时尽量避免死锁：***
+
+1. 尽量确保业务逻辑没有死锁，所有线程按顺序获取资源
+2. 减少锁的颗粒度，尽量减少锁内的资源访问，尽量避免锁套锁
+3. 复杂逻辑使用Monitor.TryEnter / Mutex.WaitOne(timeout)或者ReaderWriterLockSlim，设置超时时间
+
+:::
+
+::: tip 如何实现分布式锁
+
+1. 同个机器跨进程（业务场景很少，无法做分布式，虽然我们一般也不需要，不怎么使用）
+   1. Mutex（命名互斥体）
+   2. 文件锁（File Lock）性能差
+2. 跨 系统 / 分布式
+   1. Redis 分布式锁 
+      1. `var gotLock = db.StringSet("lock:key",token,TimeSpan.FromMilliseconds(30000),When.NotExists);`
+      2. token 唯一标识；TimeSpan.FromMilliseconds(30000)：超时时间，防止死锁；When.NotExists：Only Set if Not eXists，键不存在时才成功
+      3. 返回 true：成功拿到锁。返回 false：锁已被别人持有。
+   2. ZooKeeper 分布式锁 没用过 ZooKeeper 集群集群中使用
+
+:::
