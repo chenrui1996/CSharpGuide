@@ -869,7 +869,7 @@ public class ProductController : Controller
 
 1. 静态路由+请求Body传参`[FromBody]`（使用最多）
 2. 静态路由+URL传参 参数放到方法里。如果既有路由参数又有Url参数使用`[FromQuery]`
-3. 路由参数，URL 路径 中定义占位符：{param}，框架会自动把 URL 中的值绑定到方法参数上（模型绑定）
+3. 路由参数，URL 路径 中定义占位符：{param}，框架会自动把 URL 中的值绑定到方法参数上（模型绑定）`[FromRoute]`
    1. 默认值`[HttpGet("products/{id=1}")]`
    2. 可选参数`[HttpGet("products/{id?}")]`
 
@@ -1019,9 +1019,334 @@ public IActionResult GetByName(string name) => Ok(name);
 
 :::
 
+::: tip 路由实体参数校验如何实现
+
+1. 内置数据注解 + ModelState.IsValid
+2. 自定义验证特性（ValidationAttribute）
+3. FluentValidation
+
+:::
+
 ## EF Core
 
+::: tip EF Core 是什么？和 EF6 有什么区别？
+
+EF Core 是 Microsoft 的轻量级、跨平台 ORM 框架。
+
+EF Core 支持 LINQ 查询、迁移、跟踪、延迟加载等。
+
+:::
+
+::: tip 如何配置 EF Core？
+
+1. 安装包
+   1. 核心包 Microsoft.EntityFrameworkCore
+   2. 懒加载（可选） Microsoft.EntityFrameworkCore.Proxie
+   3. 数据库驱动包
+      1. 建议选择Pomelo.EntityFrameworkCore.MySql作为mysql驱动，其他使用微软官方驱动
+2. 配置连接字符串
+   1. 只连接一个数据库可以在Program.cs 使用 AddDbContext 添加EF Core 服务到容器中并使用options配置连接字符串（建议从配置文件中读取）
+   2. 如果需要多个连接，可以使用自定义Context重写OnConfiguring，然后批量注入到容器中。然后根据数据库类型使用不同的驱动实现XXXContext连接不同数据库。
+3. 加载配置实体
+   1. 在DBContext的OnModelCreating中使用fluent API `modelBuilder.Entity<T>`加载配置
+   2. 反射批量扫描（不同DbContext实体使用不同的基类或接口） + 数据注解配置
+   3. 建议高性能使用DB配置，如果没有性能需求，像我们访问量，数据量都比较小，建议使用EF Core 实体配置为主。方便迁移、跨平台、增加配置。还可以避免很多数据库执行上的问题。
+:::
+
+::: tip DbContext 和 DbSet 的作用？
+
+DbContext：数据库上下文，负责连接数据库、跟踪实体、提交事务。
+
+`DbSet<TEntity>`：实体集合，相当于数据库表的映射。
+
+:::
+
+::: tip DbContext 生命周期如何选择？
+
+1. 一般用Scope 每次请求一个
+2. 后台线程或自定义线程自己实例化并确保释放
+
+:::
+
+::: tip EF Core 的跟踪和不跟踪查询有什么区别？
+
+- 跟踪查询会把查询得到的实体对象放入 DbContext.ChangeTracker，改实体属性，再调用 SaveChanges()，EF Core 会自动生成 UPDATE SQL。
+- 不跟踪查询 不会把查询得到的实体放入 ChangeTracker ，更快，但不能把更新查询到的实体。通常报表使用
+
+:::
+
+::: tip EF Core 如何实现事务
+
+1. 调用 SaveChanges()默认开启事务，生成事务SQL执行，保证原子性
+2. 如果需要多次调用SaveChanges或者执行原生SQL则必须使用BeginTransaction显式事务
+3. 如果需要使用多个DbContext，需要TransactionScope实现分布式事务
+
+:::
+
+::: tip EF 如何处理并发冲突？如何避免“最后一次保存覆盖前面的修改”
+
+使用最多是版本控制。
+
+给数据行加更新时间，保存前查看更新时间和查询的是否一致，不一致触发异常提醒刷新。
+
+``` c#
+[ConcurrencyCheck]
+public byte[] RowVersion { get; set; }
+```
+
+查询时不需要事务，更新时（查看更新时间 + 更新）需要事务
+
+:::
+
+::: tip 如何提高 EF Core 大数据量性能？
+
+1. 先查后操作，避免整表查
+2. 尽量分页
+3. 使用批量操作三方库BulkExtensions批量更新，删除。因为原生会拼接多个 Insert、Delete
+4. 减少SaveChanges，每次都会有事务
+5. 查询时NoTracking
+6. 使用缓存
+7. 必要时使用原生 SQL
+
+:::
+
+::: tip EFCore 的LINQ筛选时可以调用哪些方法，能不能自定义方法
+
+EF Core 在 LINQ 查询里，能把 能翻译成 SQL 的表达式 才能下推到数据库执行，其他三方方法会报错 Client Evaluation 警告。
+
+| 方法                           | 说明               |
+| ------------------------------ | ------------------ |
+| `Contains`                     | SQL `LIKE '%xxx%'` |
+| `StartsWith`                   | SQL `LIKE 'xxx%'`  |
+| `EndsWith`                     | SQL `LIKE '%xxx'`  |
+| `ToLower`, `ToUpper`           | SQL LOWER/UPPER    |
+| `Trim`, `TrimStart`, `TrimEnd` | SQL TRIM           |
+
+| 方法           | SQL 对应  |
+| -------------- | --------- |
+| `Math.Abs`     | ABS()     |
+| `Math.Ceiling` | CEILING() |
+| `Math.Floor`   | FLOOR()   |
+| `Math.Round`   | ROUND()   |
+
+| 方法                      | SQL 对应             |
+| ------------------------- | -------------------- |
+| `DateTime.Year/Month/Day` | YEAR()/MONTH()/DAY() |
+| `DateTime.Date`           | CAST(... AS DATE)    |
+| `DateTime.DayOfWeek`      | 部分数据库支持       |
+
+| 方法                                    | 说明              |
+| --------------------------------------- | ----------------- |
+| `Any`, `All`                            | EXISTS/NOT EXISTS |
+| `Contains`（集合）                      | `IN`              |
+| `Count`, `Sum`, `Max`, `Min`, `Average` | 聚合函数          |
+
+如果需要自定义方法：
+
+1. 拉到内存在处理
+2. 自定义 SQL 函数映射。需要在SQL里定义函数
+
+:::
+
+::: tip 如何在 EF Core 中执行存储过程？
+
+使用原生SQL执行
+
+ `.FromSqlRaw("EXEC GetUsersByAge @MinAge", param)`
+
+需要事务加事务
+:::
+
+::: tip 什么是影子属性、Owned Entity、值转换？
+
+- 影子属性:
+
+数据库有模型没有，使用t.Entry(user).Property("XXX")访问
+
+- Owned Entity（Owned 类型/值对象）
+
+嵌入到其他表，本身没有含义更没有主键
+
+``` C#
+public class User
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public Address HomeAddress { get; set; } // Owned Entity
+}
+
+[Owned]
+public class Address
+{
+    public string Street { get; set; }
+    public string City { get; set; }
+}
+
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>()
+        .OwnsOne(u => u.HomeAddress);
+}
+
+Id | Name | HomeAddress_Street | HomeAddress_City
+
+```
+
+- 值转换
+
+值转换是将 实体属性值 转换成 数据库存储类型。
+
+必须使用Fluent API实现，数据注解没有实现方案
+
+常用于：
+
+  - 枚举 → 整数 / 字符串
+  - 字段加密/解密
+  - 特殊类型映射（例如 bool → char 'Y'/'N'）
+:::
+
+::: tip EF Core 支持哪些数据库？支持哪些特性有限制？
+
+EF Core 是跨数据库 ORM，但特性依赖 Provider
+
+常用 CRUD / LINQ / Owned Entity / Value Conversion：大多数数据库支持
+
+SQLite 限制
+
+- 不支持 ALTER COLUMN 完整修改类型
+- 不支持 FULL OUTER JOIN
+- 对事务和并发控制支持有限、
+
+MySQL 也有部分限制
+
+- 字符串方法是最大坑，IndexOf、TrimStart/TrimEnd、Substring 等可能客户端计算。
+- 复杂 GroupBy / 多级 Join / 投影可能无法翻译。
+- EF Core 高级特性（RowVersion、Computed Column、Owned Entity）在 MySQL 有 Provider 限制。
+:::
+
 ## 认证与授权
+
+::: tip 什么是认证（Authentication）和授权（Authorization）
+
+1. 认证：确认用户身份，ASP .NET Core使用 中间件 UseAuthentication 实现
+2. 授权：确认用户是否有权限访问资源，ASP .NET Core使用 中间件 UseAuthorization 实现
+
+:::
+
+::: tip ASP.NET Core 支持哪些认证方式？
+
+- Cookie 认证：适用于 Web 应用，基于 Cookie。
+- JWT（Bearer Token）认证：适用于 API，基于 Token。
+- 第三方 OAuth / OpenID Connect：如 Google、Facebook、Microsoft Account。
+- Windows 认证 / Active Directory：用于企业内部系统。
+  
+常用的是Cookie 认证和JWT 认证
+
+:::
+
+::: tip 项目中如何实现Cookie认证，原理是什么
+
+1. 同域 http 请求会自动携带Cookie只要有。跨域请求需要配置
+   1. `axios.get("https://api.example.com/profile", { withCredentials: true });`
+   2. `fetch("https://api.example.com/profile", { credentials: "include" });`
+2. 服务端 CORS 配置必须允许凭证：
+  ``` c#
+  app.UseCors(builder =>
+    builder.WithOrigins("https://frontend.example.com")
+           .AllowCredentials()
+           .AllowAnyHeader()
+           .AllowAnyMethod());
+  ```
+3. Program.cs
+  ``` c#
+  builder.Services.AddAuthentication("MyCookieAuth")
+    .AddCookie("MyCookieAuth", options =>
+    {
+        options.Cookie.Name = "AuthCookie";
+        options.Cookie.HttpOnly = true;         // JS 无法访问
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always; // HTTPS 必须
+        options.Cookie.SameSite = SameSiteMode.None; // 跨域允许
+        options.LoginPath = "/account/login";   // 登录失败跳转
+        options.ExpireTimeSpan = TimeSpan.FromHours(1);
+    });
+
+  var app = builder.Build();
+  app.UseAuthentication();
+  app.UseAuthorization();
+  ```
+4. 登录接口，将用户信息放入Session。设置Session过期时间，下次登录Session没过期可以直接认证成功，过期了就返回登录失败。
+
+这么做有部分限制:
+
+- 服务端存了大量Session，增大服务端压力
+- 浏览器关闭会清空Session
+- 容易被攻击。
+
+:::
+
+::: tip 项目中如何实现Jwt认证，原理是什么
+
+JWT（JSON Web Token）是一种自包含的认证令牌
+
+| 部分      | 内容                                                 |
+| --------- | ---------------------------------------------------- |
+| Header    | 指明签名算法，例如 `{"alg": "HS256","typ":"JWT"}`    |
+| Payload   | 存储用户信息和 Claim，例如用户名、角色、权限等       |
+| Signature | 用 Header + Payload + 密钥计算生成，保证数据不可篡改 |
+
+过程：
+
+1. 前端发送用户名/密码到服务器 登录接口
+2. 服务器验证成功后生成 JWT（包含 Claim）并签名返回给前端。服务端可以吧JWT保存在Claim中。
+   1. 服务端要配置AddAuthentication，AddJwtBearer
+3. 前端把JWT 放在header里请求
+4. 所有受保护的接口`[Authorize]`，ASP .Net Core 会从请求头解析 Token验证(一定要保存在Claim)
+
+:::
+
+::: tip 你在项目中如何使用认证和授权的
+
+1. 前端登录页面发送用户信息
+2. 生成JwtSecurityToken返回前端，前端进入主页
+3. 访问任何方法时（由代码生成器生成，继承ControllerBase）
+   1. 自定义过滤器重写OnAuthorization，查JwtSecurityToken有没有过期，过期返回 401，用户登录
+   2. 自定义过滤器重写OnActionExecutionAsync，执行前筛选 表 + 方法。对比权限数据库，有权限继续执行，没有权限返回Error
+   3. 自定义方法使用自定义特性传入表名+action，在OnActionExecutionAsync中筛选
+
+**为什么没有使用ASP .Net Core提供的RABC认证**
+
+因为方法由代码生成，并不是严格的RABC模型。用户权限需要绑定生成的Table和操作方法。如果使用注解的方式则无法实现自定义配置。
+
+上述流程省略了无感刷新Token,除了上述的Access Token，还需要一个Refresh Token。
+
+- 捕获到 401/498 错误时，前端自动调用 刷新接口 /api/auth/refresh，并带上 Refresh Token（可以放在LocalStorage）。
+- 后端验证 Refresh Token，
+  - 没过期 签发一个新的 Access Token，并更新 Refresh Token 的过期时间；返回给前端
+  - 已过期返回401（用户注销时删除Refresh Token）
+- 前端重新请求
+
+如果需要使用验证码
+
+1. 前端登录页面调用验证码接口
+   1. 使用三方包SixLabors.ImageSharp
+2. 把验证码放在HttpContext缓存里（请求结束失效），并设置过期时间
+3. 前端登录带上验证码与缓存里的比对，超时了返回验证码超时让前端刷新
+
+:::
+
+::: tip 浏览器有哪些存储方式
+
+1. Cookie
+   1. 会随每次 HTTP 请求发送给服务器
+   2. 浏览器关闭时清除
+2. Session Storage
+   1. 仅存在浏览器，不会发送给服务器
+   2. 注意和服务端的Session不是一个东西
+3. LocalStorage
+   1. 永久存储，除非用户手动清除
+   2. 按域名存储
+
+:::
 
 ## 场景题
 
