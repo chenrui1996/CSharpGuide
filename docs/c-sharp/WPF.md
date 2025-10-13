@@ -8,6 +8,16 @@ WPF（Windows Presentation Foundation）是微软推出的下一代桌面应用�
 
 WPF Demo 地址：https://github.com/chenrui1996/WpfDemo
 
+::: danger 跨平台支持
+
+- 桌面端的跨平台需求推荐使用 [Avalonia UI](https://avaloniaui.net/gettingstarted)（常简称 Ava）
+- 移动端的跨平台需求推荐使用 [MAUI(Xamarin 后续)](https://dotnet.microsoft.com/en-us/apps/maui)（常简称 Ava）
+- 全平台需求推荐 [Uno Platform(/ˈuːnoʊ/)](https://platform.uno/)
+
+**以上平台与WPF开发过程一脉相承，容易上手。**
+
+:::
+
 ::: tip WPF与Electron
 
 | **对比**        | **WPF**                        | **Electron**                               |

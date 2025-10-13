@@ -17,6 +17,9 @@ hero:
     - theme: brand
       text: vue-demo
       link: https://chenrui1996.github.io/vue-demo/
+    - theme: brand
+      text: wpf-demo
+      link: https://github.com/chenrui1996/WpfDemo
     - theme: alt
       text: Deepseek使用
       link: /tools/deepseek/deepseek
