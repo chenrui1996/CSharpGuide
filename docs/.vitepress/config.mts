@@ -57,14 +57,14 @@ export default withMermaid({
           { text: '其他', link: '/frontend/6.其他' },
         ]
       },
-      {
-        text: '移动端',
-        items: [
-          { text: 'Android', link: '' },
-          { text: 'iOS', link: '' },
-          { text: 'uni-app', link: '' },
-        ]
-      },
+      // {
+      //   text: '移动端',
+      //   items: [
+      //     { text: 'Android', link: '' },
+      //     { text: 'iOS', link: '' },
+      //     { text: 'uni-app', link: '' },
+      //   ]
+      // },
       {
         text: '数据库',
         items: [
@@ -119,7 +119,7 @@ export default withMermaid({
           { text: 'C#', link: '/interview/cSharp' },
           { text: '.NET Core', link: '/interview/web' },
           { text: '数据库', link: '/interview/database' },
-          { text: 'Vue', link: '/interview/vue' },
+          { text: '前端', link: '/interview/vue' },
           { text: '部署与运维', link: '/interview/deploy' },
           { text: 'WPF', link: '/interview/WPF' },
           { text: '通讯', link: '/interview/communication' },
@@ -482,7 +482,7 @@ export default withMermaid({
             { text: 'C#', link: 'cSharp' },
             { text: '.NET Core', link: 'web' },
             { text: '数据库', link: 'database' },
-            { text: 'Vue', link: 'vue' },
+            { text: '前端', link: 'vue' },
             { text: '部署与运维', link: 'deploy' },
             { text: 'WPF', link: 'WPF' },
             { text: '通讯', link: 'communication' },
